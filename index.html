@@ -6,10 +6,42 @@
 
     <title> Fractals </title>
 
-    <script src="p5/p5.min.js"></script>
-    <script src="branch.js"></script>
-    <script src="main.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/prism.css"  />
+
+
 </head>
 <body>
+    <div class="main-area">
+        <button id="run" type="button"> Run</button> 
+        <button id="reset" type="button"> Reset</button>
+        <div class="main-area-block" id="canvas-area"></div>
+        <div class="main-area-block" id="blocklyDiv" style="height: 800px; width: 800px;"></div>
+        <div class="main-area-block" id="codeDiv" style="height: 800px; width: 800px;"></div>
+    </div>
 </body>
 </html>
+
+<!-- Load Prism for highlighting code -->
+<script src="scripts/prism.js"></script>
+
+
+<!-- Load P5.js core -->
+<script src="p5/p5.min.js"></script>
+<!-- Load Blockly core -->
+<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+<!-- Load the default blocks -->
+<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+<!-- Load a generator -->
+<script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+<!-- Load a message file -->
+<script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+<script src="scripts/branch.js"></script>
+<script src="scripts/blocks_definition.js"></script>
+<script src="scripts/blocks_code.js"></script>
+<script src="scripts/blockly.js"></script>
+<!-- <script src="scripts/main.js"></script> -->
+
+
