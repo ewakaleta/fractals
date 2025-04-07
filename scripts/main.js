@@ -40,3 +40,4 @@ function draw() {
     tree.draw();
     pop();
 }
+

@@ -4,6 +4,7 @@
 
 class Branch {
   /**
+   * @param {p5} p reference to p5 instance
    * @param {p5.Vector} beginPoint begging point of the tree 
    * @param {number} len length of root
    * @param {number} [angle=0] 
@@ -14,9 +15,10 @@ class Branch {
    * @param {rotation} [rotation=1] rotation of branch
    */
 
-  constructor(beginPoint, len, angle = 0, height = 0, 
+  constructor(p, beginPoint, len, angle = 0, height = 0, 
               maxHeight = 5, weight = 2, splitAmount = 2, rotation = 1) {
-    let newPoint = createVector(0, -len);
+    this.p = p
+    let newPoint = p.createVector(0, -len);
     newPoint.rotate(angle);
     let endPoint = p5.Vector.add(beginPoint, newPoint);
     this.len = len;
@@ -42,7 +44,7 @@ class Branch {
         return;
       }
       const branchAngle = index <= amount / 2 ? index : amount - index + 1;
-      this.createBranch(pow(-1, index) * this.rotation / branchAngle);
+      this.createBranch(Math.pow(-1, index) * this.rotation / branchAngle);
     }
   }
 
@@ -52,12 +54,12 @@ class Branch {
    * @memberof Branch
    */
   createBranch(angle) {
-    push();
-    let newBranch = new Branch(this.end, this.len * 0.67, this.angle - angle, this.height + 1, 
-                              this.maxHeight, this.weight, this.splitAmount, this.rotation); 
+    this.p.push();
+    let newBranch = new Branch(this.p, this.end, this.len * 0.67, this.angle - angle, this.height + 1, 
+                               this.maxHeight, this.weight, this.splitAmount, this.rotation); 
     this.branches.push(newBranch);
     newBranch.draw();
-    pop();
+    this.p.pop();
   }
 
   /**
@@ -65,8 +67,8 @@ class Branch {
    * @memberof Branch
    */
   draw() {
-    translate(this.begin.x, this.begin.y);
-    strokeWeight(this.weight);
-    line(0, 0, this.end.x - this.begin.x, this.end.y - this.begin.y);
+    this.p.translate(this.begin.x, this.begin.y);
+    this.p.strokeWeight(this.weight);
+    this.p.line(0, 0, this.end.x - this.begin.x, this.end.y - this.begin.y);
   }
 }
