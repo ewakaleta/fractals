@@ -1,13 +1,37 @@
+/* =======================
+   LAYOUT & STRUCTURE
+========================== */
 .main-area {
-    border: 1px solid black;
-    margin: 1rem;
-    padding: 2rem 2rem;
-    text-align: center;
-  }
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
 
 .main-area-block {
-    display: inline-block;
-    border: 1px solid red;
-    padding: 1rem 1rem;
-    vertical-align: middle;
-  }
+  display: inline-block;
+  border: 1px solid red;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
+#blocklyDiv,
+#codeDiv {
+  background: #f8f9fa;
+}
+
+/* =======================
+   NAVBAR
+========================== */
+.navbar-custom {
+  background-color: #333;
+  padding-left: 1rem;
+  padding-top: 1em;
+  padding-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 600;
+}

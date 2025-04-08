@@ -26,13 +26,44 @@ const toolbox = {
 };
 
 function viewCode() {
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  let code = javascript.javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace());
+  const code = javascript.javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace());
 
-  let codeDiv = document.getElementById('codeDiv');
-  let formattedCode = Prism.highlight(code, Prism.languages.javascript, 'javascript');
-  codeDiv.innerHTML = formattedCode;
+  const formattedCode = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+  const codeDiv = document.getElementById('codeDiv');
+
+  codeDiv.innerHTML = `
+    <pre class="language-javascript"><code class="language-javascript">${formattedCode}</code></pre>
+  `;
 }
+
+// document.getElementById('reset').addEventListener('click', viewCode);
+document.getElementById('run').addEventListener('click', runCode);
+
+// Reset
+document.getElementById('reset').addEventListener('click', () => {
+  workspace.clear(); // Remove all blocks
+  preloadDefaultBlocks(workspace); // Reload the default ones
+  runCode();
+});
+
+// Toggle between Blockly and Code View
+document.getElementById('toggle-code-view').addEventListener('click', () => {
+  const blocklyDiv = document.getElementById('blocklyDiv');
+  const codeDiv = document.getElementById('codeDiv');
+  const button = document.getElementById('toggle-code-view');
+
+  if (codeDiv.classList.contains('d-none')) {
+    viewCode();
+    codeDiv.classList.remove('d-none');
+    blocklyDiv.classList.add('d-none');
+    button.textContent = 'Back to Blocks';
+  } else {
+    codeDiv.classList.add('d-none');
+    blocklyDiv.classList.remove('d-none');
+    button.textContent = 'Show Code';
+  }
+});
+
 
 let currentP5Instance = null; // <- global variable
 
@@ -99,7 +130,23 @@ function preloadDefaultBlocks(workspace) {
 }
 
 const workspace = Blockly.inject('blocklyDiv', {
-  toolbox: toolbox
+  toolbox: toolbox,
+  css: true,
+  zoom: {
+    controls: true,
+    wheel: true,
+    startScale: 1.2,
+    maxScale: 3,
+    minScale: 0.3,
+    scaleSpeed: 1.2
+  },
+  grid: {
+    spacing: 20,
+    length: 3,
+    colour: '#ccc',
+    snap: true
+  }
 });
+
 preloadDefaultBlocks(workspace); 
 runCode(); 

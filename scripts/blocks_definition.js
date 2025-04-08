@@ -164,18 +164,74 @@ Blockly.common.defineBlocksWithJsonArray([
 Blockly.common.defineBlocksWithJsonArray([
   {
     "type": "draw_tree_fractal",
-    "message0": "draw tree fractal with length %1 max height %2 weight %3 split %4 rotation %5",
+    "tooltip": "",
+    "helpUrl": "Draw a recursive tree fractal with the given parameters.",
+    "message0": "Draw Tree Fractal %1 Height %2 %3 maxDepth %4 %5 Weight %6 %7 Split %8 %9 Rotation %10 %11",
     "args0": [
-      { "type": "field_number", "name": "LENGTH", "value": 200, "min": 0 },
-      { "type": "field_number", "name": "HEIGHT", "value": 5, "min": 0 },
-      { "type": "field_number", "name": "WEIGHT", "value": 2, "min": 1 },
-      { "type": "field_number", "name": "SPLIT", "value": 2, "min": 1 },
-      { "type": "field_number", "name": "ROTATION", "value": 0.75, "min": 0 }
+      {
+        "type": "input_dummy",
+        "name": ""
+      },
+      {
+        "type": "field_number",
+        "name": "HEIGHT",
+        "value": 200,
+        "min": 0,
+        "max": 500
+      },
+      {
+        "type": "input_dummy",
+        "name": ""
+      },
+      {
+        "type": "field_number",
+        "name": "MAXDEPTH",
+        "value": 5,
+        "min": 0,
+        "max": 10,
+        "precision": 1
+      },
+      {
+        "type": "input_dummy",
+        "name": ""
+      },
+      {
+        "type": "field_number",
+        "name": "WEIGHT",
+        "value": 5,
+        "min": 0
+      },
+      {
+        "type": "input_dummy",
+        "name": ""
+      },
+      {
+        "type": "field_number",
+        "name": "SPLIT",
+        "value": 2,
+        "min": 2,
+        "max": 128,
+        "precision": 2
+      },
+      {
+        "type": "input_dummy",
+        "name": ""
+      },
+      {
+        "type": "field_number",
+        "name": "ROTATION",
+        "value": 0.75,
+        "min": 0.1,
+        "max": 2,
+        "precision": 0.1
+      },
+      {
+        "type": "input_dummy",
+        "name": ""
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 290,
-    "tooltip": "Draw a recursive tree fractal with the given parameters.",
-    "helpUrl": ""
+    "colour": 285
   }
 ]);

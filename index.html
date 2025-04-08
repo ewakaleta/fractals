@@ -1,47 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title> Fractals </title>
+    <title>Fractals</title>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="styles/prism.css" />
     <!-- CSS -->
     <link rel="stylesheet" href="styles/index.css" />
-    <link rel="stylesheet" href="styles/prism.css"  />
-
-
 </head>
+
 <body>
-    <div class="main-area">
-        <button id="run" type="button"> Run</button> 
-        <button id="reset" type="button"> Reset</button>
-        <div class="main-area-block" id="canvas-area"></div>
-        <div class="main-area-block" id="blocklyDiv" style="height: 800px; width: 800px;"></div>
-        <div class="main-area-block" id="codeDiv" style="height: 800px; width: 800px;"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Fractal Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blocks Reference</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div>
+                <button id="run" class="btn btn-success me-2">Run</button>
+                <button id="reset" class="btn btn-secondary me-2">Reset</button>
+                <button id="toggle-code-view" class="btn btn-outline-primary">Show Code</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Canvas -->
+            <div class="col-md-6 mb-3">
+                <div id="canvas-area" class="border bg-light p-2" style="height: 800px;"></div>
+            </div>
+
+            <!-- Blockly/Code Toggle Area -->
+            <div class="col-md-6 mb-3">
+                <div id="blocklyDiv" class="border" style="height: 800px;"></div>
+                <div id="codeDiv" class="d-none" style="height: 800px; overflow: auto;"></div>
+            </div>
+        </div>
     </div>
+
+    <!-- Prism.js -->
+    <script src="scripts/prism.js"></script>
+
+    <!-- p5.js -->
+    <script src="p5/p5.min.js"></script>
+
+    <!-- Blockly -->
+    <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+    <!-- Scripts -->
+    <script src="scripts/branch.js"></script>
+    <script src="scripts/blocks_definition.js"></script>
+    <script src="scripts/blocks_code.js"></script>
+    <script src="scripts/blockly.js"></script>
+    <!-- <script src="scripts/main.js"></script> -->
 </body>
+
 </html>
-
-<!-- Load Prism for highlighting code -->
-<script src="scripts/prism.js"></script>
-
-
-<!-- Load P5.js core -->
-<script src="p5/p5.min.js"></script>
-<!-- Load Blockly core -->
-<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
-<!-- Load the default blocks -->
-<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
-<!-- Load a generator -->
-<script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
-<!-- Load a message file -->
-<script src="https://unpkg.com/blockly/msg/en.js"></script>
-
-<script src="scripts/branch.js"></script>
-<script src="scripts/blocks_definition.js"></script>
-<script src="scripts/blocks_code.js"></script>
-<script src="scripts/blockly.js"></script>
-<!-- <script src="scripts/main.js"></script> -->
-
-
