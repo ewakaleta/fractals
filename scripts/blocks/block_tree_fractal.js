@@ -49,7 +49,16 @@ Blockly.common.defineBlocksWithJsonArray([
  *
  * @param {Blockly.Block} block - The 'draw_tree_fractal' block instance.
  * @returns {string} JavaScript code that creates and renders a tree fractal in p5.js.
+ * 
+ * @example
+ * // Output:
+ * p.push();
+ * const start = p.createVector(p.width / 2, p.height);
+ * const tree = new Branch(p, start, 200, 0, 0, 5, 5, 2, 0.75);
+ * tree.draw();
+ * p.pop();
  */
+
 
 javascript.javascriptGenerator.forBlock['draw_tree_fractal'] = function (block) {
   const height = block.getFieldValue('HEIGHT');

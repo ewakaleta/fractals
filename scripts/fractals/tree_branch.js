@@ -54,12 +54,19 @@ class Branch {
      * @memberof Branch
      */
     createBranch(angle) {
-      this.p.push();
-      let newBranch = new Branch(this.p, this.end, this.len * 0.67, this.angle - angle, this.height + 1, 
-                                 this.maxHeight, this.weight, this.splitAmount, this.rotation); 
+      const newBranch = new Branch(
+        this.p,
+        this.end,
+        this.len * 0.67,
+        this.angle - angle,
+        this.height + 1,
+        this.maxHeight,
+        this.weight,
+        this.splitAmount,
+        this.rotation
+      );
+    
       this.branches.push(newBranch);
-      newBranch.draw();
-      this.p.pop();
     }
   
     /**
@@ -67,8 +74,15 @@ class Branch {
      * @memberof Branch
      */
     draw() {
+      this.p.push();
       this.p.translate(this.begin.x, this.begin.y);
       this.p.strokeWeight(this.weight);
       this.p.line(0, 0, this.end.x - this.begin.x, this.end.y - this.begin.y);
+    
+      for (let child of this.branches) {
+        child.draw();
+      }
+    
+      this.p.pop();
     }
   }
