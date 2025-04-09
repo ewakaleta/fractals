@@ -179,7 +179,7 @@ Blockly.common.defineBlocksWithJsonArray([
  */
 javascript.javascriptGenerator.forBlock['setup'] = function (block) {
     const statements = javascript.javascriptGenerator.statementToCode(block, 'do');
-    return `p.setup = function() {\n${statements}};\n`;
+    return `p.setup = function() {\n${statements}};\n\n`;
 };
 
 /**
@@ -189,7 +189,7 @@ javascript.javascriptGenerator.forBlock['setup'] = function (block) {
  */
 javascript.javascriptGenerator.forBlock['draw'] = function (block) {
     const statements = javascript.javascriptGenerator.statementToCode(block, 'do');
-    return `p.draw = function() {\n${statements}};\n`;
+    return `p.draw = function() {\n${statements}};\n\n`;
 };
 
 /**

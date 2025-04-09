@@ -29,8 +29,17 @@ export const toolbox = {
         "name": "Tree fractal",
         "colour": "#90CAF9",
         "contents": [
-          { "kind": "block", "type": "draw_tree_fractal" }
+          { "kind": "block", "type": "draw_tree_fractal" },
+          { "kind": "block", "type": "create_root_branch" },
+          { "kind": "block", "type": "build_tree" },
+          { "kind": "block", "type": "draw_tree" }
         ]
-      }    
+      },
+      {
+        "kind": "category",
+        "name": "Variables",
+        "custom": "VARIABLE",
+        "colour": "#F9A825"
+      }         
     ]
   };

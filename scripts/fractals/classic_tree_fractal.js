@@ -6,14 +6,14 @@ var weightSlider;
 var splitSlider;
 
 
-/**
- *TODO: sliders for:
- 1. randomizing?
- 2. grow step - how much new branches shrink (currently hard coded 0.67)
- 3. Bootstrap
- 4. node js
- 5. maybe react js
- **/
+// /**
+//  *TODO: sliders for:
+//  1. randomizing?
+//  2. grow step - how much new branches shrink (currently hard coded 0.67)
+//  3. Bootstrap
+//  4. node js
+//  5. maybe react js
+//  **/
 
 function setup() {
     var myCanvas = createCanvas(800, 800);
@@ -40,4 +40,3 @@ function draw() {
     tree.draw();
     pop();
 }
-

@@ -87,6 +87,10 @@ const workspace = Blockly.inject('blocklyDiv', {
   }
 });
 
+// Register Blockly's nameDB for variable handling
+javascript.javascriptGenerator.nameDB_ = new Blockly.Names(javascript.javascriptGenerator.RESERVED_WORDS_);
+javascript.javascriptGenerator.nameDB_.setVariableMap(workspace.getVariableMap());
+
 preloadDefaultBlocks(workspace);
 runCode();
 
