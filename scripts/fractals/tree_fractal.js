@@ -1,3 +1,7 @@
+/**
+ * @class Branch
+ * Recursive branch structure used to draw tree-like fractals.
+ */
 class Branch {
   /**
    * @param {p5} p - p5 instance
@@ -6,18 +10,16 @@ class Branch {
    * @param {number} angle - current angle
    * @param {number} height - current recursion depth
    * @param {number} maxHeight - max recursion depth
-   * @param {number} weight - stroke weight
    * @param {number} splitAmount - number of children
    * @param {number} rotation - spread between branches
    */
-  constructor(p, beginPoint, len, angle = 0, height = 0, maxHeight = 5, weight = 2, splitAmount = 2, rotation = 1) {
+  constructor(p, beginPoint, len, angle = 0, height = 0, maxHeight = 5, splitAmount = 2, rotation = 1) {
     this.p = p;
     this.begin = beginPoint;
     this.len = len;
     this.angle = angle;
     this.height = height;
     this.maxHeight = maxHeight;
-    this.weight = weight;
     this.splitAmount = splitAmount;
     this.rotation = rotation;
     this.branches = [];
@@ -52,7 +54,6 @@ class Branch {
         this.angle - angleOffset,
         this.height + 1,
         this.maxHeight,
-        this.weight,
         this.splitAmount,
         this.rotation
       );
@@ -64,18 +65,17 @@ class Branch {
   }
 
   /**
-   * Draws one branch
+   * Draws one branch (uses global stroke weight)
    */
   draw() {
     this.p.push();
     this.p.translate(this.begin.x, this.begin.y);
-    this.p.strokeWeight(this.weight);
     this.p.line(0, 0, this.end.x - this.begin.x, this.end.y - this.begin.y);
     this.p.pop();
   }
 
   /**
-   * Recursively draws one branch and its children
+   * Recursively draws the entire tree
    */
   drawTree() {
     this.draw();
