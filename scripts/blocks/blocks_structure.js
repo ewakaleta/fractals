@@ -149,6 +149,24 @@ Blockly.common.defineBlocksWithJsonArray([
         "helpUrl": ""
     },
     {
+        "type": "set_stroke_weight",
+        "message0": "set stroke weight to %1",
+        "args0": [
+            {
+                "type": "field_number",
+                "name": "WEIGHT",
+                "value": 2,
+                "min": 0,
+                "precision": 1
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 120,
+        "tooltip": "Sets the thickness of lines and strokes.",
+        "helpUrl": ""
+    },
+    {
         "type": "draw",
         "message0": "draw %1 do %2",
         "args0": [
@@ -165,7 +183,56 @@ Blockly.common.defineBlocksWithJsonArray([
         "colour": 225,
         "tooltip": "Draw actions that run inside p5.js draw() loop.",
         "helpUrl": ""
-    }
+    },
+    {
+        "type": "no_loop",
+        "message0": "disable draw loop",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 195,
+        "tooltip": "Disables continuous drawing (runs draw() once)",
+        "helpUrl": "https://p5js.org/reference/#/p5/noLoop"
+    },
+    {
+        "type": "no_fill",
+        "message0": "no fill shapes",
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 195,
+        "tooltip": "Disables filling of shapes",
+        "helpUrl": "https://p5js.org/reference/#/p5/noFill"
+    },
+    {
+        "type": "set_fill",
+        "message0": "set fill color to %1",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "COLOR",
+                "text": "51"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 120,
+        "tooltip": "Sets fill color (grayscale, color name, or hex string)",
+        "helpUrl": "https://p5js.org/reference/#/p5/fill"
+    },
+    {
+        "type": "set_fill_rgb",
+        "message0": "set fill color to R %1 G %2 B %3",
+        "args0": [
+            { "type": "field_number", "name": "R", "value": 255, "min": 0, "max": 255 },
+            { "type": "field_number", "name": "G", "value": 255, "min": 0, "max": 255 },
+            { "type": "field_number", "name": "B", "value": 255, "min": 0, "max": 255 }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 120,
+        "tooltip": "Sets the fill color for shapes using RGB values",
+        "helpUrl": "https://p5js.org/reference/#/p5/fill"
+    },
+
 ]);
 
 // ================================
@@ -246,5 +313,57 @@ javascript.javascriptGenerator.forBlock['set_stroke_rgb'] = function (block) {
     const g = block.getFieldValue('G');
     const b = block.getFieldValue('B');
     return `p.stroke(${r}, ${g}, ${b});\n`;
+};
+
+/**
+ * Generates code for setting stroke weight.
+ *
+ * @param {Blockly.Block} block
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['set_stroke_weight'] = function (block) {
+    const weight = block.getFieldValue('WEIGHT');
+    return `p.strokeWeight(${weight});\n`;
+};
+
+
+/**
+ * Generator for 'no_loop' block. Disables draw() loop in p5.js.
+ * @returns {string} JavaScript code
+ */
+javascript.javascriptGenerator.forBlock['no_loop'] = function () {
+    return 'p.noLoop();\n';
+};
+
+/**
+ * Generator for 'no_fill' block. Disables fill color for shapes.
+ * @returns {string} JavaScript code
+ */
+javascript.javascriptGenerator.forBlock['no_fill'] = function () {
+    return 'p.noFill();\n';
+};
+
+/**
+* Generator for 'set_fill' block.
+* Accepts a single input for grayscale, color name, or hex value.
+* @param {Blockly.Block} block
+* @returns {string} JavaScript code
+*/
+javascript.javascriptGenerator.forBlock['set_fill'] = function (block) {
+    const colorValue = block.getFieldValue('COLOR');
+    return `p.fill(${colorValue});\n`;
+};
+
+
+/**
+ * Generator for 'set_fill_rgb' block. Sets RGB fill color for shapes.
+ * @param {Blockly.Block} block
+ * @returns {string} JavaScript code
+ */
+javascript.javascriptGenerator.forBlock['set_fill_rgb'] = function (block) {
+    const r = block.getFieldValue('R');
+    const g = block.getFieldValue('G');
+    const b = block.getFieldValue('B');
+    return `p.fill(${r}, ${g}, ${b});\n`;
 };
 

@@ -20,6 +20,11 @@ export function preloadDefaultBlocks(workspace) {
     canvasBlock.initSvg();
     canvasBlock.render();
 
+    // Create the no_loop block
+    const noLoopBlock = workspace.newBlock('no_loop');
+    noLoopBlock.initSvg();
+    noLoopBlock.render();
+
     // Create the set_background block
     const backgroundBlock = workspace.newBlock('set_background');
     backgroundBlock.setFieldValue('51', 'COLOR'); // Note: this must be a string
@@ -32,8 +37,9 @@ export function preloadDefaultBlocks(workspace) {
     strokeBlock.initSvg();
     strokeBlock.render();
 
-    // Chain them: canvas -> background -> stroke
-    canvasBlock.nextConnection.connect(backgroundBlock.previousConnection);
+    // Chain them: canvas → noLoop → background → stroke
+    canvasBlock.nextConnection.connect(noLoopBlock.previousConnection);
+    noLoopBlock.nextConnection.connect(backgroundBlock.previousConnection);
     backgroundBlock.nextConnection.connect(strokeBlock.previousConnection);
 
     // Insert the chain into setup's "do" input
