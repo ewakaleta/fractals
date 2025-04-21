@@ -37,7 +37,7 @@ class SierpinskiTriangle {
      */
     drawTriangleRec(x, y, size, depth) {
         if (depth === 0) {
-            this.drawSingleTriangle(x, y, size);
+            drawSingleTriangle(this.p, x, y, size);
             return;
         }
 
@@ -49,20 +49,26 @@ class SierpinskiTriangle {
         this.drawTriangleRec(x - half / 2, y + halfHeight, half, depth - 1); // Bottom left
         this.drawTriangleRec(x + half / 2, y + halfHeight, half, depth - 1); // Bottom right
     }
-
-    /**
-     * Draws a single filled triangle at the specified position.
-     * @private
-     * @param {number} x - X position of the top vertex
-     * @param {number} y - Y position of the top vertex
-     * @param {number} size - Side length of the triangle
-     */
-    drawSingleTriangle(x, y, size) {
-        const height = (Math.sqrt(3) / 2) * size;
-        this.p.triangle(
-            x, y,
-            x - size / 2, y + height,
-            x + size / 2, y + height
-        );
-    }
 }
+
+/**
+ * Draws a single equilateral triangle using p5.
+ * This is used both by the SierpinskiTriangle class and blockly-generated code.
+ * 
+ * @param {p5} p - p5 instance
+ * @param {number} x - top vertex x
+ * @param {number} y - top vertex y
+ * @param {number} size - side length
+ */
+function drawSingleTriangle(p, x, y, size) {
+    const height = (Math.sqrt(3) / 2) * size;
+    p.triangle(
+      x, y,
+      x - size / 2, y + height,
+      x + size / 2, y + height
+    );
+  }
+  
+  // Expose drawSingleTriangle globally for Blockly-generated code
+  window.drawSingleTriangle = drawSingleTriangle;
+  

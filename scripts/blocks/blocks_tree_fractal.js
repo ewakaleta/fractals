@@ -1,10 +1,10 @@
 /**
  * @fileoverview
- * Defines the custom Blockly block and JavaScript code generator
+ * Defines the custom Blockly blocks and JavaScript code generators
  * for drawing a recursive tree fractal using p5.js.
  * 
  * This set of blocks includes:
- * - Fully ready-to-use draw_tree_fractal block 
+ * - Fully all-in-one draw_tree_fractal block 
  * - Blocks for granular tree construction via named variables
  * - Blocks for handling recursion and drawing
  */
@@ -47,7 +47,7 @@ Blockly.common.defineBlocksWithJsonArray([
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 285,
+    "colour": 180,
     "tooltip": "Creates and stores the root branch at canvas center",
     "helpUrl": ""
   },
@@ -59,7 +59,7 @@ Blockly.common.defineBlocksWithJsonArray([
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 285,
+    "colour": 180,
     "tooltip": "Recursively builds the tree starting at this branch",
     "helpUrl": ""
   },
@@ -71,7 +71,7 @@ Blockly.common.defineBlocksWithJsonArray([
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 285,
+    "colour": 180,
     "tooltip": "Draws the tree fractal from the given branch",
     "helpUrl": ""
   }
