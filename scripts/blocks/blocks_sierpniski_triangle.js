@@ -29,7 +29,7 @@ Blockly.common.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 285,
+        "colour": 260,
         "tooltip": "Draws a recursive Sierpinski triangle starting from a given point and size.",
         "helpUrl": ""
     },

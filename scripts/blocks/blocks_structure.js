@@ -232,6 +232,18 @@ Blockly.common.defineBlocksWithJsonArray([
         "tooltip": "Sets the fill color for shapes using RGB values",
         "helpUrl": "https://p5js.org/reference/#/p5/fill"
     },
+    {
+        "type": "set_stroke_weight",
+        "message0": "set stroke weight to %1",
+        "args0": [
+          { "type": "field_number", "name": "WEIGHT", "min": 0}
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 160,
+        "tooltip": "Sets the thickness of lines drawn after this block.",
+        "helpUrl": ""
+      }
 
 ]);
 
@@ -367,3 +379,13 @@ javascript.javascriptGenerator.forBlock['set_fill_rgb'] = function (block) {
     return `p.fill(${r}, ${g}, ${b});\n`;
 };
 
+/**
+ * Generates JavaScript to set the stroke weight.
+ * @param {Blockly.Block} block
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['set_stroke_weight'] = function (block) {
+    const weight = block.getFieldValue('WEIGHT');
+    return `p.strokeWeight(${weight});\n`;
+  };
+  

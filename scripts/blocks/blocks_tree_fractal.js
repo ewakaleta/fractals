@@ -33,7 +33,7 @@ Blockly.common.defineBlocksWithJsonArray([
     ],
     previousStatement: null,
     nextStatement: null,
-    colour: 285
+    colour: 260
   },
   {
     "type": "create_root_branch",

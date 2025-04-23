@@ -36,7 +36,8 @@ export const toolbox = {
         { "kind": "block", "type": "set_stroke" },
         { "kind": "block", "type": "set_stroke_rgb" },
         { "kind": "block", "type": "set_fill" },
-        { "kind": "block", "type": "set_fill_rgb" }
+        { "kind": "block", "type": "set_fill_rgb" },
+        { "kind": "block", "type": "set_stroke_weight" }
       ]
     },
 
@@ -85,7 +86,20 @@ export const toolbox = {
       
       ]
     },
-
+    {
+      "kind": "category",
+      "name": "Cantor Set",
+      "colour": "#A5D6A7",
+      "contents": [
+        { "kind": "block", "type": "draw_cantor_set" },
+        { "kind": "block", "type": "define_draw_cantor_function" },
+        { "kind": "block", "type": "cantor_recursion_base_case" },
+        { "kind": "block", "type": "cantor_geometry_vars" },
+        { "kind": "block", "type": "cantor_draw_line" },
+        { "kind": "block", "type": "call_draw_cantor_position" },
+        { "kind": "block", "type": "call_draw_cantor" },
+      ]
+    },
     // ───────── Logic & Math ─────────
     {
       "kind": "category",

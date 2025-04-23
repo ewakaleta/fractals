@@ -1,5 +1,5 @@
 // ================================
-// Sierpniski Triangle blocks definition
+// Koch Snnowflake blocks definition
 // ================================
 
 Blockly.common.defineBlocksWithJsonArray([
@@ -14,7 +14,7 @@ Blockly.common.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 285,
+        "colour": 260,
         "tooltip": "Draws a Koch snowflake at a given position, with side length and recursion depth.",
         "helpUrl": ""
     },
