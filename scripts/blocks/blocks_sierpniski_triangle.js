@@ -24,7 +24,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "input_value", "name": "SIZE" },
+            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0},
             { "type": "field_number", "name": "DEPTH", "value": 4, "min": 0, "max": 10, "precision": 1 }
         ],
         "previousStatement": null,
@@ -93,15 +93,8 @@ Blockly.common.defineBlocksWithJsonArray([
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "input_value", "name": "SIZE" },
-            {
-                "type": "field_number",
-                "name": "DEPTH",
-                "value": 4,
-                "min": 0,
-                "max": 10,
-                "precision": 1
-            }
+            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0},
+            { "type": "field_number", "name": "DEPTH", "value": 4, "min": 0, "max": 10, "precision": 1 }
         ],
         "previousStatement": null,
         "nextStatement": null,
@@ -121,18 +114,9 @@ Blockly.common.defineBlocksWithJsonArray([
  * @returns {string} 
  */
 javascript.javascriptGenerator.forBlock['draw_sierpinski_triangle'] = function (block) {
-    const x = block.getInput('X')
-        ? javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE)
-        : block.getFieldValue('X');
-
-    const y = block.getInput('Y')
-        ? javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE)
-        : block.getFieldValue('Y');
-
-    const size = block.getInput('SIZE')
-        ? javascript.javascriptGenerator.valueToCode(block, 'SIZE', javascript.Order.NONE)
-        : block.getFieldValue('SIZE');
-
+    const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
+    const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
+    const size = block.getFieldValue('SIZE');
     const depth = block.getFieldValue('DEPTH');
 
     return `function triangle_rec(x, y, size, depth) {
@@ -217,7 +201,7 @@ javascript.javascriptGenerator.forBlock['call_triangle_rec_position'] = function
 javascript.javascriptGenerator.forBlock['call_triangle_rec'] = function (block) {
     const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
     const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
-    const size = javascript.javascriptGenerator.valueToCode(block, 'SIZE', javascript.Order.NONE) || '0';
+    const size = block.getFieldValue('SIZE');    
     const depth = block.getFieldValue('DEPTH');
 
     return `triangle_rec(${x}, ${y}, ${size}, ${depth});\n`;

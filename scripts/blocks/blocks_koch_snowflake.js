@@ -9,15 +9,8 @@ Blockly.common.defineBlocksWithJsonArray([
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "input_value", "name": "LENGTH" },
-            {
-                "type": "field_number",
-                "name": "DEPTH",
-                "value": 3,
-                "min": 0,
-                "max": 6,
-                "precision": 1
-            }
+            { "type": "field_number", "name": "LENGTH", "value": 400, "min": 0},
+            { "type": "field_number", "name": "DEPTH", "value": 3, "min": 0, "max": 6, "precision": 1}
         ],
         "previousStatement": null,
         "nextStatement": null,
@@ -70,15 +63,8 @@ Blockly.common.defineBlocksWithJsonArray([
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "input_value", "name": "LENGTH" },
-            {
-                "type": "field_number",
-                "name": "DEPTH",
-                "value": 3,
-                "min": 0,
-                "max": 6,
-                "precision": 1
-            }
+            { "type": "field_number", "name": "LENGTH", "value": 400, "min": 0},
+            { "type": "field_number", "name": "DEPTH", "value": 3, "min": 0, "max": 6, "precision": 1}
         ],
         "previousStatement": null,
         "nextStatement": null,
@@ -180,7 +166,7 @@ Blockly.common.defineBlocksWithJsonArray([
 javascript.javascriptGenerator.forBlock['draw_koch_snowflake'] = function (block) {
     const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
     const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
-    const length = javascript.javascriptGenerator.valueToCode(block, 'LENGTH', javascript.Order.NONE) || '0';
+    const length = block.getFieldValue('LENGTH');
     const depth = block.getFieldValue('DEPTH');
 
     return `generateSnowflake(p, ${x}, ${y}, ${length}, ${depth});
@@ -264,7 +250,7 @@ javascript.javascriptGenerator.forBlock['draw_snowflake_edges'] = function () {
 javascript.javascriptGenerator.forBlock['call_generate_snowflake'] = function (block) {
     const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
     const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
-    const length = javascript.javascriptGenerator.valueToCode(block, 'LENGTH', javascript.Order.NONE) || '0';
+    const length = block.getFieldValue('LENGTH');
     const depth = block.getFieldValue('DEPTH');
 
     return `generateSnowflake(${x}, ${y}, ${length}, ${depth});
