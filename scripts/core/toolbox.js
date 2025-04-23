@@ -65,6 +65,26 @@ export const toolbox = {
         { "kind": "block", "type": "call_triangle_rec" },
       ]
     },
+    {
+      "kind": "category",
+      "name": "Koch Snowflake",
+      "colour": "#A5D6A7",
+      "contents": [
+        { "kind": "block", "type": "draw_koch_snowflake" },
+        { "kind": "block", "type": "define_edges_array" },
+        { "kind": "block", "type": "generate_snowflake" },
+        { "kind": "block", "type": "generate_koch_edge" },
+        { "kind": "block", "type": "draw_snowflake_edges" },
+        { "kind": "block", "type": "call_generate_snowflake" },
+        { "kind": "block", "type": "define_generate_snowflake" },
+        { "kind": "block", "type": "define_generate_koch_edge" },
+        { "kind": "block", "type": "calculate_equilateral_triangle" },
+        { "kind": "block", "type": "koch_recursion_base_case" },
+        { "kind": "block", "type": "koch_calculate_subdivision_points" },
+        { "kind": "block", "type": "call_generate_koch_edge_position" }
+      
+      ]
+    },
 
     // ───────── Logic & Math ─────────
     {

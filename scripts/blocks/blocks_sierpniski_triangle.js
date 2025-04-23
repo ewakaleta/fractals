@@ -108,7 +108,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "colour": 180,
         "tooltip": "Calls triangle_rec to start the Sierpinski recursion with given parameters.",
         "helpUrl": ""
-    }
+    } 
 ]);
 
 // ================================
@@ -117,8 +117,8 @@ Blockly.common.defineBlocksWithJsonArray([
 
 /**
  * Generates the full recursive Sierpinski triangle definition and calls it.
- * @param {Blockly.Block} block - The draw_sierpinski_triangle block instance.
- * @returns {string} JavaScript code that defines and invokes the recursive triangle_rec function.
+ * @param {Blockly.Block} block 
+ * @returns {string} 
  */
 javascript.javascriptGenerator.forBlock['draw_sierpinski_triangle'] = function (block) {
     const x = block.getInput('X')
@@ -133,7 +133,7 @@ javascript.javascriptGenerator.forBlock['draw_sierpinski_triangle'] = function (
         ? javascript.javascriptGenerator.valueToCode(block, 'SIZE', javascript.Order.NONE)
         : block.getFieldValue('SIZE');
 
-    const depth = block.getFieldValue('DEPTH'); // keep field_number for depth
+    const depth = block.getFieldValue('DEPTH');
 
     return `function triangle_rec(x, y, size, depth) {
     if (depth === 0) {
@@ -223,3 +223,4 @@ javascript.javascriptGenerator.forBlock['call_triangle_rec'] = function (block) 
     return `triangle_rec(${x}, ${y}, ${size}, ${depth});\n`;
 };
 
+  
