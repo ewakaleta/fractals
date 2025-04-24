@@ -106,7 +106,6 @@ export const toolbox = {
       "colour": "#A5D6A7",
       "contents": [
         { "kind": "block", "type": "draw_mandelbrot" },
-        { "kind": "block", "type": "my_block3" },
       ]
     },
     // ───────── Logic & Math ─────────

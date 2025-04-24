@@ -1,3 +1,5 @@
+import p5 from 'p5';
+
 /**
  * @class Branch
  * Recursive branch structure used to draw tree-like fractals.
@@ -84,3 +86,5 @@ class Branch {
     }
   }
 }
+
+export default Branch;

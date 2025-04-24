@@ -13,13 +13,19 @@
 import p5 from 'p5';
 
 import * as Blockly from 'blockly/core';
+import * as libraryBlocks from 'blockly/blocks';
 import * as javascript from 'blockly/javascript';
 import * as En from 'blockly/msg/en';
 
-import '../fractals/tree_fractal.js';
+import Branch from '../fractals/tree_fractal.js';
 import '../fractals/sierpniski_triangle.js';
 import '../fractals/koch_snowflake.js';
-import '../fractals/mandelbrot_set.js';
+import {
+  setupPixels,
+  pixelToComplexNum,
+  mandelbrotIteration,
+  determineColors
+} from '../fractals/mandelbrot_set.js';
 
 import '../blocks/blocks_structure.js';
 import '../blocks/blocks_math.js';
@@ -43,7 +49,7 @@ Blockly.setLocale(En);
  * @returns {void}
  */
 function runCode() {
-  javaScript.INFINITE_LOOP_TRAP = null;
+  javascript.javascriptGenerator.INFINITE_LOOP_TRAP = null;
   const userCode = javascript.javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace());
 
   const wrappedCode = `

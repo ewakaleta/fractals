@@ -2,7 +2,7 @@
  * Sets pixel density and loads pixel data into the pixel array.
  * @param {p5} p - p5 instance
  */
-function setupPixels(p) {
+export function setupPixels(p) {
     p.pixelDensity(1);
     p.loadPixels();
   }
@@ -16,7 +16,7 @@ function setupPixels(p) {
    * @param {number} offsetY - vertical offset
    * @returns {{aStart: number, bStart: number}} - real and imaginary parts of the complex number
    */
-  function pixelToComplexNum(x, y, zoom, offsetX, offsetY) {
+  export function pixelToComplexNum(x, y, zoom, offsetX, offsetY) {
     const aStart = x / zoom + offsetX;
     const bStart = y / zoom + offsetY;
     return { aStart, bStart };
@@ -29,7 +29,7 @@ function setupPixels(p) {
    * @param {number} maxIterations - maximum number of iterations allowed
    * @returns {number} - number of iterations before divergence (or maxIterations if bounded)
    */
-  function mandelbrotIteration(aStart, bStart, maxIterations) {
+  export function mandelbrotIteration(aStart, bStart, maxIterations) {
     let a = 0;
     let b = 0;
     let n = 0;
@@ -64,7 +64,7 @@ function setupPixels(p) {
    * @param {number} hueRange - hue variation range (0-255)
    * @param {number} insideHue - hue for pixels inside the set
    */
-  function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange, insideHue) {
+  export function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange, insideHue) {
     let col;
   
     if (useColor) {
