@@ -57,23 +57,24 @@ class Branch {
   }
 }
 
-new p5((p) => {
-  p.setup = function () {
-    let myCanvas = p.createCanvas(800, 800);
-    myCanvas.parent("canvas-area");
-    p.noLoop();
-    p.background(51);
-    p.stroke(255);
-  };
+function setup() {
+  const myCanvas = createCanvas(800, 800);
+  myCanvas.parent("canvas-area");
+  noLoop();
+  background(51);
+  stroke(255);
+}
 
-  p.draw = function () {
-    const root = new Branch(p, p.createVector(p.width / 2, p.height), 200, 0, 0, 5, 2, 0.8);
-    (function build(branch) {
-      if (!branch.isMaxDepth()) {
-        const children = branch.split();
-        children.forEach(build);
-      }
-    })(root);
-    root.drawTree();
-  };
-});
+function draw() {
+  const root = new Branch(this, createVector(width / 2, height), 200, 0, 0, 5, 2, 0.8);
+
+  function build(branch) {
+    if (!branch.isMaxDepth()) {
+      const children = branch.split();
+      children.forEach(build);
+    }
+  }
+
+  build(root);
+  root.drawTree();
+}

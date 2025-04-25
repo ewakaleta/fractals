@@ -41,7 +41,7 @@ function setupPixels(p) {
       a = aa + aStart;
       b = bb + bStart;
   
-      if (a * a + b * b > 16) break;
+      if (a * a + b * b > 4) break;
   
       n++;
     }
@@ -62,28 +62,27 @@ function setupPixels(p) {
    * @param {boolean} useColor - toggle color (HSB) or grayscale
    * @param {number} baseHue - base hue (0-255)
    * @param {number} hueRange - hue variation range (0-255)
-   * @param {number} insideHue - hue for pixels inside the set
    */
-  function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange, insideHue) {
-    let col;
+  function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange) {
+    let color
   
     if (useColor) {
       p.colorMode(p.HSB, 255);
       if (n === maxIterations) {
-        col = p.color(insideHue, 255, 0); // Inside: dark hue
+        color = p.color(255, 255, 0); // Inside: black
       } else {
         const hue = p.map(n, 0, maxIterations, baseHue, baseHue + hueRange);
-        col = p.color(hue % 255, 255, 255); // Outside: gradient hue
+        color = p.color(hue % 255, 255, 255); // Outside: gradient hue
       }
     } else {
       const bright = n === maxIterations ? 0 : p.map(n, 0, maxIterations, 0, 255);
-      col = p.color(bright);
+      color = p.color(bright);
     }
   
     const pix = (x + y * p.width) * 4;
-    p.pixels[pix + 0] = p.red(col);
-    p.pixels[pix + 1] = p.green(col);
-    p.pixels[pix + 2] = p.blue(col);
+    p.pixels[pix + 0] = p.red(color);
+    p.pixels[pix + 1] = p.green(color);
+    p.pixels[pix + 2] = p.blue(color);
     p.pixels[pix + 3] = 255;
   }
   

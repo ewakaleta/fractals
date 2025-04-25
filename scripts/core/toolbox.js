@@ -45,7 +45,7 @@ export const toolbox = {
     {
       "kind": "category",
       "name": "Tree Fractal",
-      "colour": "#90CAF9",
+      "colour": "#A5D6A7",
       "contents": [
         { "kind": "block", "type": "draw_tree_fractal" },
         { "kind": "block", "type": "create_root_branch" },
@@ -103,10 +103,29 @@ export const toolbox = {
     {
       "kind": "category",
       "name": "Mandelbrot Set",
-      "colour": "#A5D6A7",
+      "colour": "#90CAF9",
       "contents": [
         { "kind": "block", "type": "draw_mandelbrot" },
-        { "kind": "block", "type": "my_block3" },
+        { "kind": "block", "type": "setup_pixels" },
+        { "kind": "block", "type": "define_mandelbrot_set" },
+        { "kind": "block", "type": "pixel_loop" },
+        { "kind": "block", "type": "pixel_to_complex" },
+        { "kind": "block", "type": "mandelbrot_iteration_loop" },
+        { "kind": "block", "type": "mandelbrot_determine_color" },
+        { "kind": "block", "type": "mandelbrot_update_pixels" },
+        { "kind": "block", "type": "call_mandelbrot" },
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Dragon Curve",
+      "colour": "#90CAF9",
+      "contents": [
+        { "kind": "block", "type": "draw_dragon_curve" },
+        { "kind": "block", "type": "enable_angle_mode" },
+        { "kind": "block", "type": "function_build_turn_sequence" },
+        { "kind": "block", "type": "function_draw_dragon_curve" },
+        
       ]
     },
     // ───────── Logic & Math ─────────
