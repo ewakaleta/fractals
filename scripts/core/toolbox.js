@@ -71,19 +71,22 @@ export const toolbox = {
       "name": "Koch Snowflake",
       "colour": "#A5D6A7",
       "contents": [
-        { "kind": "block", "type": "draw_koch_snowflake" },
-        { "kind": "block", "type": "define_edges_array" },
+        { "kind": "block", "type": "all_in_koch_snowflake" },
+        { "kind": "block", "type": "empty_edges_array" },
         { "kind": "block", "type": "generate_snowflake" },
         { "kind": "block", "type": "generate_koch_edge" },
         { "kind": "block", "type": "draw_snowflake_edges" },
-        { "kind": "block", "type": "call_generate_snowflake" },
+        { "kind": "block", "type": "draw_koch_snowflake" },
+        { "kind": "block", "type": "define_edges_array" },
         { "kind": "block", "type": "define_generate_snowflake" },
         { "kind": "block", "type": "define_generate_koch_edge" },
+        { "kind": "block", "type": "define_draw_snowflake_edges" },
         { "kind": "block", "type": "calculate_equilateral_triangle" },
         { "kind": "block", "type": "koch_recursion_base_case" },
         { "kind": "block", "type": "koch_calculate_subdivision_points" },
-        { "kind": "block", "type": "call_generate_koch_edge_position" }
-      
+        { "kind": "block", "type": "call_generate_koch_edge_position" },
+        { "kind": "block", "type": "draw_snowflake_edges_iteration" },
+        { "kind": "block", "type": "call_generate_snowflake" }
       ]
     },
     {
@@ -126,6 +129,14 @@ export const toolbox = {
         { "kind": "block", "type": "function_build_turn_sequence" },
         { "kind": "block", "type": "function_draw_dragon_curve" },
         
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Barnsley Fern",
+      "colour": "#90CAF9",
+      "contents": [
+        { "kind": "block", "type": "draw_barnsley_fern" }, 
       ]
     },
     // ───────── Logic & Math ─────────
