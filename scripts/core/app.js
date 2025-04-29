@@ -13,6 +13,7 @@
 import { toolbox } from './toolbox.js';
 import { preloadDefaultBlocks } from './preload.js';
 
+
 let currentP5Instance = null;
 
 /**
@@ -87,6 +88,43 @@ const workspace = Blockly.inject('blocklyDiv', {
   }
 });
 
+/**
+ * Custom tooltip look (hover on block)
+ * Displays the code that the block is generating, formatted and highlighted using Prism
+ */
+
+Blockly.Tooltip.setCustomTooltip(function (div, element) {
+  const codeSnippet = Blockly.Tooltip.getTooltipOfObject(element);
+  div.innerHTML = '';
+
+  const highlightedCode = Prism.highlight(codeSnippet, Prism.languages.javascript, 'javascript');
+
+  // Outer container
+  const tooltipContainer = document.createElement('div');
+  tooltipContainer.style.display = 'inline-block';
+  tooltipContainer.style.backgroundColor = '#f8f9fa';
+  tooltipContainer.style.borderRadius = '3px';
+  tooltipContainer.style.padding = '5px';
+  tooltipContainer.style.overflowX = 'auto';
+
+  // Code block
+  const codeBlock = document.createElement('pre');
+  codeBlock.className = 'language-javascript';
+  codeBlock.style.margin = '0';
+  codeBlock.style.fontSize = '16px';
+  codeBlock.style.lineHeight = '1.5';
+  codeBlock.style.whiteSpace = 'pre-wrap';
+  codeBlock.style.wordBreak = 'break-word';
+
+  const codeInner = document.createElement('code');
+  codeInner.className = 'language-javascript';
+  codeInner.innerHTML = highlightedCode;
+
+  codeBlock.appendChild(codeInner);
+  tooltipContainer.appendChild(codeBlock);
+  div.appendChild(tooltipContainer);
+});
+
 // Register Blockly's nameDB for variable handling
 javascript.javascriptGenerator.nameDB_ = new Blockly.Names(javascript.javascriptGenerator.RESERVED_WORDS_);
 javascript.javascriptGenerator.nameDB_.setVariableMap(workspace.getVariableMap());
@@ -131,3 +169,39 @@ document.getElementById('toggle-code-view').addEventListener('click', () => {
     button.textContent = 'Show Code';
   }
 });
+
+/**
+ * Toast container for save/load pop-ups.
+ */
+function showToast(message) {
+  const toastElement = document.getElementById('workspaceToast');
+  const toastMessage = document.getElementById('toast-message');
+  toastMessage.textContent = message;
+
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
+/**
+ * Save button: saves current workspace.
+ */
+document.getElementById('save').addEventListener('click', () => {
+  const state = Blockly.serialization.workspaces.save(workspace);
+  localStorage.setItem('workspace-state', JSON.stringify(state));
+  showToast('Workspace saved!');
+});
+
+/**
+ * Load button: loads the saved workspace.
+ */
+document.getElementById('load').addEventListener('click', () => {
+  const stateText = localStorage.getItem('workspace-state');
+  if (stateText) {
+    const state = JSON.parse(stateText);
+    Blockly.serialization.workspaces.load(state, workspace);
+    showToast('Workspace loaded!');
+  } else {
+    showToast('No saved workspace found.');
+  }
+});
+
