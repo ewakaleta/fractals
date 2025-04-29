@@ -15,8 +15,6 @@
 Blockly.common.defineBlocksWithJsonArray([
     {
         "type": "setup",
-        "tooltip": "",
-        "helpUrl": "Setup actions for p5.js",
         "message0": "setup %1 do %2",
         "args0": [
             {
@@ -29,7 +27,27 @@ Blockly.common.defineBlocksWithJsonArray([
             }
         ],
         "nextStatement": null,
-        "colour": 225
+        "colour": 225,
+        "tooltip": `p.setup = function() {\n}`,
+        "helpUrl": "",
+    },
+    {
+        "type": "draw",
+        "message0": "draw %1 do %2",
+        "args0": [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "do"
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": 225,
+        "tooltip": `p.draw = function() {\n};`,
+        "helpUrl": ""
     },
     {
         "type": "create_canvas",
@@ -49,7 +67,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Creates a canvas with specified dimensions.",
+        "tooltip": `let myCanvas = p.createCanvas(800, 800);\nmyCanvas.parent("canvas-area");`,
         "helpUrl": ""
     },
     {
@@ -65,7 +83,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Set background color using grayscale, hex, named color, or variable.",
+        "tooltip": `p.background(color);`,
         "helpUrl": ""
     },
     {
@@ -97,7 +115,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Sets the background color using RGB values.",
+        "tooltip": `p.background(r, g, b);`,
         "helpUrl": ""
     },
     {
@@ -113,7 +131,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "",
+        "tooltip": `p.stroke(color);`,
         "helpUrl": ""
     },
     {
@@ -145,7 +163,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Sets the stroke color using RGB values.",
+        "tooltip": `p.stroke(r, g, b);`,
         "helpUrl": ""
     },
     {
@@ -163,25 +181,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Sets the thickness of lines and strokes.",
-        "helpUrl": ""
-    },
-    {
-        "type": "draw",
-        "message0": "draw %1 do %2",
-        "args0": [
-            {
-                "type": "input_dummy"
-            },
-            {
-                "type": "input_statement",
-                "name": "do"
-            }
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": 225,
-        "tooltip": "Draw actions that run inside p5.js draw() loop.",
+        "tooltip": `p.strokeWeight(weight);`,
         "helpUrl": ""
     },
     {
@@ -190,7 +190,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 195,
-        "tooltip": "Disables continuous drawing (runs draw() once)",
+        "tooltip": `p.noLoop();`,
         "helpUrl": "https://p5js.org/reference/#/p5/noLoop"
     },
     {
@@ -199,7 +199,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 195,
-        "tooltip": "Disables filling of shapes",
+        "tooltip": `p.noFill();`,
         "helpUrl": "https://p5js.org/reference/#/p5/noFill"
     },
     {
@@ -215,7 +215,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Sets fill color (grayscale, color name, or hex string)",
+        "tooltip": `p.fill(color);`,
         "helpUrl": "https://p5js.org/reference/#/p5/fill"
     },
     {
@@ -229,7 +229,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 120,
-        "tooltip": "Sets the fill color for shapes using RGB values",
+        "tooltip": `p.fill(r, g, b);`,
         "helpUrl": "https://p5js.org/reference/#/p5/fill"
     },
     {
@@ -241,7 +241,7 @@ Blockly.common.defineBlocksWithJsonArray([
         "previousStatement": null,
         "nextStatement": null,
         "colour": 160,
-        "tooltip": "Sets the thickness of lines drawn after this block.",
+        "tooltip": `p.strokeWeight(weight);`,
         "helpUrl": ""
       }
 
@@ -280,7 +280,7 @@ javascript.javascriptGenerator.forBlock['create_canvas'] = function (block) {
     const width = block.getFieldValue('WIDTH');
     const height = block.getFieldValue('HEIGHT');
     return `let myCanvas = p.createCanvas(${width}, ${height});
-  myCanvas.parent("canvas-area");\n`;
+myCanvas.parent("canvas-area");\n`;
 };
 
 /**
