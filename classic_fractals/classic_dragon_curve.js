@@ -11,17 +11,17 @@ function setup() {
   noLoop();
 
   angleMode(DEGREES);
+}
 
-  // Build the sequence of turns
+function draw() {
   for (let i = 0; i < depth; i++) {
     let next = [...turns];
     next.reverse();
     next = next.map(t => (t === 0 ? 1 : 0));
-    turns.push(0); // left turn
+    turns.push(0);
     turns = turns.concat(next);
   }
 
-  // Draw the dragon curve using the turn instructions
   translate(1000, 300);
   let dir = 0;
 

@@ -41,7 +41,7 @@ export const toolbox = {
       ]
     },
 
-    // ───────── Fractals ─────────
+    // ───────── Recursive Fractals ─────────
     {
       "kind": "category",
       "name": "Tree Fractal",
@@ -116,6 +116,7 @@ export const toolbox = {
         { "kind": "block", "type": "call_draw_cantor" },
       ]
     },
+    // ───────── Non-Recursive Fractals ─────────
     {
       "kind": "category",
       "name": "Mandelbrot Set",
@@ -140,10 +141,19 @@ export const toolbox = {
       "colour": "#90CAF9",
       "contents": [
         { "kind": "block", "type": "draw_dragon_curve" },
-        { "kind": "block", "type": "enable_angle_mode" },
+        { "kind": "block", "type": "use_degrees" },
         { "kind": "block", "type": "function_build_turn_sequence" },
         { "kind": "block", "type": "function_draw_dragon_curve" },
-        
+        { "kind": "block", "type": "set_degrees" },
+        { "kind": "block", "type": "define_turns_array" },
+        { "kind": "block", "type": "dragon_depth_loop" },
+        { "kind": "block", "type": "next_turn_sequence" },
+        { "kind": "block", "type": "move_starting_point" },
+        { "kind": "block", "type": "set_start_degree" },
+        { "kind": "block", "type": "dragon_turn_loop" },
+        { "kind": "block", "type": "dragon_update_direction" },
+        { "kind": "block", "type": "dragon_draw_segment" },
+    
       ]
     },
     {

@@ -61,7 +61,7 @@ drawBranch(p, height, currentDepth, maxDepth, split, rotation) // Start drawing 
   },
   {
     "type": "use_degrees",
-    "message0": "Use degree angles for rotation",
+    "message0": "Use degree for angles",
     "previousStatement": null,
     "nextStatement": null,
     "colour": 180,
