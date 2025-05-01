@@ -20,7 +20,7 @@
 Blockly.common.defineBlocksWithJsonArray([
     {
         "type": "all_in_sierpniski_triangle",
-        "message0": "draw Sierpinski at x: %1 y: %2 size: %3 depth: %4",
+        "message0": "draw Sierpinski Triangle at x: %1 y: %2 size: %3 depth: %4",
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },

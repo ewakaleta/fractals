@@ -46,7 +46,7 @@ Blockly.common.defineBlocksWithJsonArray([
   },
   {
     "type": "generate_snowflake",
-    "message0": "Build the snowflake at the point (x, y)",
+    "message0": "Describe how to build the Koch Snowflake",
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
@@ -64,7 +64,7 @@ Blockly.common.defineBlocksWithJsonArray([
   },
   {
     "type": "generate_koch_edge",
-    "message0": "Add fractal edge between two points with given depth",
+    "message0": "Describe how to split a line into Koch segments",
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
@@ -89,7 +89,7 @@ Blockly.common.defineBlocksWithJsonArray([
   },
   {
     "type": "draw_snowflake_edges",
-    "message0": "Draw all edges stored in the list",
+    "message0": "Describe how to draw the snowflake edges",
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
@@ -103,7 +103,7 @@ Blockly.common.defineBlocksWithJsonArray([
   },
   {
     "type": "draw_koch_snowflake",
-    "message0": "Create and display the Koch snowflake at x: %1 y: %2 with length: %3 and depth: %4",
+    "message0": "Create and draw the Koch snowflake at x: %1 y: %2 with length: %3 and depth: %4",
     "args0": [
       { "type": "input_value", "name": "X" },
       { "type": "input_value", "name": "Y" },
@@ -141,7 +141,7 @@ drawSnowflakeEdges();`,
   },
   {
     "type": "define_generate_koch_edge",
-    "message0": "define function generateKochEdge(p, a, b, depth) %1 %2",
+    "message0": "define function generateKochEdge(a, b, depth) %1 %2",
     "args0": [
       { "type": "input_dummy" },
       { "type": "input_statement", "name": "DO" }
@@ -404,7 +404,7 @@ javascript.javascriptGenerator.forBlock['calculate_equilateral_triangle'] = func
 };
 
 /**
-* Generates the base case logic for the Koch recursion.
+* Generates JavaScript for the base case logic for the Koch recursion.
 * If depth is 0, it pushes the current segment {a, b} to the global edges array and returns.
 *
 * @returns {string} 

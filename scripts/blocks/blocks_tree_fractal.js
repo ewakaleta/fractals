@@ -16,65 +16,170 @@
 
 Blockly.common.defineBlocksWithJsonArray([
   {
-    type: "draw_tree_fractal",
-    tooltip: "Draws a tree fractal using configurable parameters.",
-    helpUrl: "",
-    message0: "Draw Tree Fractal %1 Height %2 %3 maxDepth %4 %5 Split %6 %7 Rotation %8 %9",
+    type: "all_in_tree_fractal",
+    message0: "Draw Tree Fractal with branch length: %1 depth: %2 branch split: %3 and rotation: %4",
     args0: [
-      { type: "input_dummy", name: "" },
-      { type: "field_number", name: "HEIGHT", value: 200, min: 0, max: 500 },
-      { type: "input_dummy", name: "" },
-      { type: "field_number", name: "MAXDEPTH", value: 5, min: 0, max: 10, precision: 1 },
-      { type: "input_dummy", name: "" },
-      { type: "field_number", name: "SPLIT", value: 2, min: 2, max: 128, precision: 2 },
-      { type: "input_dummy", name: "" },
-      { type: "field_number", name: "ROTATION", value: 0.75, min: 0.1, max: 2, precision: 0.1 },
-      { type: "input_dummy", name: "" }
+      { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
+      { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },
+      { type: "field_number", name: "SPLIT", value: 2, min: 2, max: 5, precision: 2 },
+      { type: "field_number", name: "ROTATION", value: 60, min: 0, max: 360, precision: 10 },
     ],
     previousStatement: null,
     nextStatement: null,
-    colour: 260
+    colour: 260,
+    tooltip: `p.angleMode(p.DEGREES); // Use degrees
+p.translate(p.width / 2, p.height); // Move the tree base to the bottom-center of the canvas
+drawBranch(p, height, currentDepth, maxDepth, split, rotation) // Start drawing the tree from the bottom up;`,
+    helpUrl: "",
   },
   {
-    "type": "create_root_branch",
-    "message0": "create root branch as %1 with height %2 max depth %3 split %4 rotation %5",
-    "args0": [
-      { "type": "field_variable", "name": "ROOT", "variable": "root" },
-      { "type": "field_number", "name": "HEIGHT", "value": 200 },
-      { "type": "field_number", "name": "MAXDEPTH", "value": 5 },
-      { "type": "field_number", "name": "SPLIT", "value": 2 },
-      { "type": "field_number", "name": "ROTATION", "value": 0.75 }
-    ],
+    "type": "draw_branch",
+    "message0": "Describe how to draw the Tree Fractal",
     "previousStatement": null,
     "nextStatement": null,
     "colour": 180,
-    "tooltip": "Creates and stores the root branch at canvas center",
+    "tooltip": `function drawBranch(length, depth, maxDepth, split, rotation) {
+    if (depth >= maxDepth) return;
+
+    // Draw the current branch
+    p.line(0, 0, 0, -length);
+    p.translate(0, -length);
+
+    // Determine angle between branches
+    let angleStep = split > 1 ? rotation / (split - 1) : 0;
+    let startAngle = -rotation / 2;
+
+    // Recursively draw each sub-branch
+    for (let i = 0; i < split; i++) {
+      p.push();
+      p.rotate(startAngle + i * angleStep);
+      drawBranch(length * 0.7, depth + 1, maxDepth, split, rotation);
+      p.pop();
+    }
+  }`,
     "helpUrl": ""
   },
   {
-    "type": "build_tree",
-    "message0": "recursively build tree from %1",
-    "args0": [
-      { "type": "field_variable", "name": "ROOT", "variable": "root" }
-    ],
+    "type": "use_degrees",
+    "message0": "Use degree angles for rotation",
     "previousStatement": null,
     "nextStatement": null,
     "colour": 180,
-    "tooltip": "Recursively builds the tree starting at this branch",
+    "tooltip": "p.angleMode(p.DEGREES);",
     "helpUrl": ""
   },
   {
-    "type": "draw_tree",
-    "message0": "draw tree %1",
-    "args0": [
-      { "type": "field_variable", "name": "ROOT", "variable": "root" }
-    ],
+    "type": "set_tree_base",
+    "message0": "  Start the drawing from the bottom center of the screen",
     "previousStatement": null,
     "nextStatement": null,
     "colour": 180,
-    "tooltip": "Draws the tree fractal from the given branch",
+    "tooltip": "p.translate(p.width / 2, p.height);",
     "helpUrl": ""
-  }
+  },
+  {
+    type: "draw_tree_fractal",
+    message0: "Draw Tree Fractal with length: %1 depth: %2 branch split: %3 and rotation: %4",
+    args0: [
+      { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
+      { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },
+      { type: "field_number", name: "SPLIT", value: 2, min: 2, max: 5, precision: 2 },
+      { type: "field_number", name: "ROTATION", value: 60, min: 0, max: 360, precision: 10 },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 180,
+    tooltip: `drawBranch(length, depth, maxDepth, split, rotation)`,
+    helpUrl: "",
+  },
+  {
+    "type": "define_draw_branch",
+    "message0": "define function drawBranch(length, depth, maxDepth, split, rotation) %1 %2",
+    "args0": [
+      { "type": "input_dummy" },
+      { "type": "input_statement", "name": "DO" }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": `function drawBranch(length, depth, maxDepth, split, rotation) {\n}`,
+    "helpUrl": ""
+  },
+  {
+    "type": "tree_recursion_base_case",
+    "message0": "If depth reaches maxDepth then return",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": `if (depth >= maxDepth) return;`,
+    "helpUrl": ""
+  },
+  {
+    "type": "draw_current_branch",
+    "message0": "Draw the current branch",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": `p.line(0, 0, 0, -length);\np.translate(0, -length);`,
+    "helpUrl": ""
+  },
+  {
+    "type": "determine_angle",
+    "message0": "Determine the angle between branches",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": `let angleStep = split > 1 ? rotation / (split - 1) : 0;\nlet startAngle = -rotation / 2;`,
+    "helpUrl": ""
+  },
+  {
+    "type": "recursive_draw_branch",
+    "message0": "Recursively draw each sub-branch",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": `for (let i = 0; i < split; i++) {
+      p.push();
+      p.rotate(startAngle + i * angleStep);
+      drawBranch(length * 0.7, depth + 1, maxDepth, split, rotation);
+      p.pop();
+    }`,
+    "helpUrl": ""
+  },
+  {
+    "type": "set_degrees",
+    "message0": "Set the angleMode to DEGREES",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": "p.angleMode(p.DEGREES);",
+    "helpUrl": ""
+  },
+  {
+    "type": "set_origin_bottom_center",
+    "message0": "Move the origin to bottom-center of canvas",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 345,
+    "tooltip": "p.translate(p.width / 2, p.height);",
+    "helpUrl": ""
+  },
+  {
+    type: "call_draw_branch",
+    message0: "Call drawBranch(0) with length: %1 depth: %2 branch split: %3 and rotation: %4",
+    args0: [
+      { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
+      { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },
+      { type: "field_number", name: "SPLIT", value: 2, min: 2, max: 5, precision: 2 },
+      { type: "field_number", name: "ROTATION", value: 60, min: 0, max: 360, precision: 10 },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 345,
+    tooltip: `drawBranch(length, depth, maxDepth, split, rotation)`,
+    helpUrl: "",
+  },
+
 ]);
 
 // ================================
@@ -84,81 +189,177 @@ Blockly.common.defineBlocksWithJsonArray([
 /**
  *Generates JavaScript for a full, all-in-one tree fractal block.
  *
- * @param {Blockly.Block} block - The 'draw_tree_fractal' block instance.
- * @returns {string} JavaScript code that creates and renders a tree fractal in p5.js.
+ * @param {Blockly.Block} block 
+ * @returns {string}
+ */
+
+ javascript.javascriptGenerator.forBlock['all_in_tree_fractal'] = function (block) {
+  const length = block.getFieldValue('LENGTH');
+  const maxDepth = block.getFieldValue('MAXDEPTH');
+  const split = block.getFieldValue('SPLIT');
+  const rotation = block.getFieldValue('ROTATION');
+
+  return `p.angleMode(p.DEGREES);
+p.translate(p.width / 2, p.height); // Move the tree base to the bottom-center of the canvas
+drawBranch(p, ${length}, 0, ${maxDepth}, ${split}, ${rotation});\n\n`; 
+};
+
+/**
+ * Generates JavaScript code with the drawBranch() function implementation.
+ *
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['draw_branch'] = function () {
+  return `function drawBranch(length, depth, maxDepth, split, rotation) {
+  if (depth >= maxDepth) return;
+
+  // Draw the current branch
+  p.line(0, 0, 0, -length);
+  p.translate(0, -length);
+
+  // Determine angle between branches
+  let angleStep = split > 1 ? rotation / (split - 1) : 0;
+  let startAngle = -rotation / 2;
+
+  // Recursively draw each sub-branch
+  for (let i = 0; i < split; i++) {
+    p.push();
+    p.rotate(startAngle + i * angleStep);
+    drawBranch(length * 0.7, depth + 1, maxDepth, split, rotation);
+    p.pop();
+  }
+}\n\n`;
+};
+
+/**
+ * Generates JavaScript code to set angleMode to DEGREES.
+ *
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['use_degrees'] = function () {
+  return `p.angleMode(p.DEGREES);\n`;
+};
+
+/**
+ * Generates JavaScript code to move the drawing origin (0, 0) to the bottom center of the screen.
+ *
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['set_tree_base'] = function () {
+  return `p.translate(p.width / 2, p.height);\n`;
+};
+
+/**
+ *Generates JavaScript for calling the drawBranch() function.
+ *
+ * @param {Blockly.Block} block 
+ * @returns {string}
  */
 
  javascript.javascriptGenerator.forBlock['draw_tree_fractal'] = function (block) {
-  const height = block.getFieldValue('HEIGHT');
+  const length = block.getFieldValue('LENGTH');
   const maxDepth = block.getFieldValue('MAXDEPTH');
   const split = block.getFieldValue('SPLIT');
   const rotation = block.getFieldValue('ROTATION');
 
-  return `const root = new Branch(p, p.createVector(p.width / 2, p.height), ${height}, 0, 0, ${maxDepth}, ${split}, ${rotation});
-(function build(branch) {
-  if (!branch.isMaxDepth()) {
-    const children = branch.split();
-    children.forEach(build);
-  }
-})(root);
-root.drawTree();\n`;
+  return `drawBranch(${length}, 0,  ${maxDepth}, ${split}, ${rotation});\n`; 
 };
 
 /**
- * Generates JavaScript to create and store a root branch in a variable.
+ * Generates a function definition for generateKochEdge with nested logic.
  * @param {Blockly.Block} block
  * @returns {string}
  */
-javascript.javascriptGenerator.forBlock['create_root_branch'] = function (block) {
-  const varName = javascript.javascriptGenerator.nameDB_.getName(
-    block.getFieldValue('ROOT'),
-    Blockly.VARIABLE_CATEGORY_NAME
-  );
+javascript.javascriptGenerator.forBlock['define_draw_branch'] = function (block) {
+  const statements = javascript.javascriptGenerator.statementToCode(block, 'DO');
+  return `function drawBranch(length, depth, maxDepth, split, rotation) {\n${statements}}\n\n`;
+};
 
-  const height = block.getFieldValue('HEIGHT');
+/**
+ *Generates JavaScript for defining the drawBranch() function.
+ *
+ * @param {Blockly.Block} block 
+ * @returns {string}
+ */
+
+ javascript.javascriptGenerator.forBlock['draw_tree_fractal'] = function (block) {
+  const statements = javascript.javascriptGenerator.statementToCode(block, 'DO');
+  return `function drawBranch(height, depth, maxDepth, split, rotation) {\n${statements}}\n\n`;
+};
+
+/**
+* Generates JavaScript for the base case logic for the Tree Fractal recursion.
+* If depth reaches maxDepth return.
+*
+* @returns {string} 
+*/
+javascript.javascriptGenerator.forBlock['tree_recursion_base_case'] = function () {
+  return `if (depth >= maxDepth) return\n`;
+};
+
+/**
+* Generates JavaScript for drawing the current branch. 
+*
+* @returns {string} 
+*/
+javascript.javascriptGenerator.forBlock['draw_current_branch'] = function () {
+  return `p.line(0, 0, 0, -length);\np.translate(0, -length);\n`;
+};
+
+/**
+* Generates JavaScript for determining the current angle for a branch. 
+*
+* @returns {string} 
+*/
+javascript.javascriptGenerator.forBlock['determine_angle'] = function () {
+  return `let angleStep = split > 1 ? rotation / (split - 1) : 0;
+let startAngle = -rotation / 2\n`;
+};
+
+/**
+* Generates JavaScript for recursively drawing the tree branches (iteration over the split amount) 
+*
+* @returns {string} 
+*/
+javascript.javascriptGenerator.forBlock['recursive_draw_branch'] = function () {
+  return `for (let i = 0; i < split; i++) {
+    p.push();
+    p.rotate(startAngle + i * angleStep);
+    drawBranch(length * 0.7, depth + 1, maxDepth, split, rotation);
+    p.pop();
+  }\n`;
+};
+
+/**
+ * Generates JavaScript code to set angleMode to DEGREES.
+ *
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['set_degrees'] = function () {
+  return `p.angleMode(p.DEGREES);\n`;
+};
+
+/**
+ * Generates JavaScript code to move the drawing origin (0, 0) to the bottom center of the screen.
+ *
+ * @returns {string}
+ */
+javascript.javascriptGenerator.forBlock['set_origin_bottom_center'] = function () {
+  return `p.translate(p.width / 2, p.height);\n`;
+};
+
+/**
+ *Generates JavaScript for calling the drawBranch() function.
+ *
+ * @param {Blockly.Block} block 
+ * @returns {string}
+ */
+
+ javascript.javascriptGenerator.forBlock['call_draw_branch'] = function (block) {
+  const length = block.getFieldValue('LENGTH');
   const maxDepth = block.getFieldValue('MAXDEPTH');
   const split = block.getFieldValue('SPLIT');
   const rotation = block.getFieldValue('ROTATION');
 
-  return `const ${varName} = new Branch(p, p.createVector(p.width / 2, p.height), ${height}, 0, 0, ${maxDepth}, ${split}, ${rotation});\n`;
+  return `drawBranch(${length}, 0,  ${maxDepth}, ${split}, ${rotation});\n`; 
 };
-
-
-/**
- * Generates a recursive tree-building function call on a named root variable.
- * @param {Blockly.Block} block
- * @returns {string}
- */
-javascript.javascriptGenerator.forBlock['build_tree'] = function (block) {
-  const varName = javascript.javascriptGenerator.nameDB_.getName(
-    block.getFieldValue('ROOT'),
-    Blockly.VARIABLE_CATEGORY_NAME
-  );
-
-  return `function build(branch) {
-  if (!branch.isMaxDepth()) {
-    const children = branch.split();
-    children.forEach(build);
-  }
-}\n
-build(${varName});
-`;
-};
-
-/**
- * Generates JavaScript to draw a tree fractal from a named branch variable.
- * @param {Blockly.Block} block
- * @returns {string}
- */
-javascript.javascriptGenerator.forBlock['draw_tree'] = function (block) {
-  const varName = javascript.javascriptGenerator.nameDB_.getName(
-    block.getFieldValue('ROOT'),
-    Blockly.VARIABLE_CATEGORY_NAME
-  );
-
-  return `if (${varName}) {
-  ${varName}.drawTree();
-}
-`;
-};
-

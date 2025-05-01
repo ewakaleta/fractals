@@ -47,10 +47,19 @@ export const toolbox = {
       "name": "Tree Fractal",
       "colour": "#A5D6A7",
       "contents": [
+        { "kind": "block", "type": "all_in_tree_fractal" },
+        { "kind": "block", "type": "draw_branch" },
+        { "kind": "block", "type": "use_degrees" },
+        { "kind": "block", "type": "set_tree_base" },
         { "kind": "block", "type": "draw_tree_fractal" },
-        { "kind": "block", "type": "create_root_branch" },
-        { "kind": "block", "type": "build_tree" },
-        { "kind": "block", "type": "draw_tree" }
+        { "kind": "block", "type": "define_draw_branch" },
+        { "kind": "block", "type": "tree_recursion_base_case" },
+        { "kind": "block", "type": "draw_current_branch" },
+        { "kind": "block", "type": "determine_angle" },
+        { "kind": "block", "type": "recursive_draw_branch" },
+        { "kind": "block", "type": "set_degrees" },
+        { "kind": "block", "type": "set_origin_bottom_center" },
+        { "kind": "block", "type": "call_draw_branch" },
       ]
     },
     {
@@ -143,7 +152,7 @@ export const toolbox = {
     {
       "kind": "category",
       "name": "Values & Helpers",
-      "colour": "#9FA8DA",
+      "colour": "#FFB74D",
       "contents": [
         { "kind": "block", "type": "math_number" },
         { "kind": "block", "type": "canvas_center_x" },
@@ -161,12 +170,5 @@ export const toolbox = {
         { "kind": "block", "type": "math_single" }
       ]
     },
-    // ───────── Variables & Functions ─────────
-    {
-      "kind": "category",
-      "name": "Variables",
-      "colour": "#A65C81",
-      "custom": "VARIABLE"
-    }
   ]
 };
