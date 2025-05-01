@@ -6,7 +6,7 @@
  * This set of blocks supports two levels of abstraction for creating
  * the Sierpinski triangle:
  * 
- * - High-level block: `draw_sierpinski_triangle` draws the full fractal using built-in logic.
+ * - High-level block: `all_in_sierpniski_triangle` draws the full fractal using built-in logic.
  * - Mid-level blocks: Allow users to define the recursive drawing function manually,
  *   including function definition, base case handling, helper geometry variables,
  *   and recursive function calls for each triangle segment.
@@ -19,18 +19,36 @@
 
 Blockly.common.defineBlocksWithJsonArray([
     {
-        "type": "draw_sierpinski_triangle",
+        "type": "all_in_sierpniski_triangle",
         "message0": "draw Sierpinski at x: %1 y: %2 size: %3 depth: %4",
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0},
+            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0 },
             { "type": "field_number", "name": "DEPTH", "value": 4, "min": 0, "max": 10, "precision": 1 }
         ],
         "previousStatement": null,
         "nextStatement": null,
         "colour": 260,
-        "tooltip": "Draws a recursive Sierpinski triangle starting from a given point and size.",
+        "tooltip": `function triangle_rec(x, y, size, depth) {
+    // Base case: if recursion depth is 0, draw a single triangle
+    if (depth === 0) {
+      drawSingleTriangle(p, x, y, size);
+      return;
+    }
+    
+    // Calculate geometry helper values
+    const half = size / 2;
+    const height = (Math.sqrt(3) / 2) * size;
+    const halfHeight = height / 2;
+  
+    triangle_rec(x, y, half, depth - 1);                        // Top triangle
+    triangle_rec(x - half / 2, y + halfHeight, half, depth - 1); // Bottom left triangle
+    triangle_rec(x + half / 2, y + halfHeight, half, depth - 1); // Bottom right triangle
+  }
+  
+  triangle_rec(x, y, size, depth);
+`,
         "helpUrl": ""
     },
     {
@@ -45,8 +63,8 @@ Blockly.common.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
-        "tooltip": "Defines the recursive triangle_rec function with x, y, size, depth as arguments.",
+        "colour": 345,
+        "tooltip": `function triangle_rec(x, y, size, depth) {\n};`,
         "helpUrl": ""
     },
     {
@@ -54,8 +72,11 @@ Blockly.common.defineBlocksWithJsonArray([
         "message0": "if depth = 0 then draw triangle and return",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
-        "tooltip": "Checks if depth is 0 and draws the base triangle if true.",
+        "colour": 345,
+        "tooltip": `if (depth === 0) {
+    drawSingleTriangle(p, x, y, size);
+    return;
+}`,
         "helpUrl": ""
     },
     {
@@ -63,8 +84,10 @@ Blockly.common.defineBlocksWithJsonArray([
         "message0": "define triangle geometry helpers",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
-        "tooltip": "Defines helper variables: half, height, and halfHeight for triangle recursion.",
+        "colour": 345,
+        "tooltip": `const half = size / 2;
+const height = (Math.sqrt(3) / 2) * size;
+const halfHeight = height / 2;`,
         "helpUrl": ""
     },
     {
@@ -83,8 +106,8 @@ Blockly.common.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
-        "tooltip": "Calls triangle_rec with the correct arguments for the selected triangle part.",
+        "colour": 345,
+        "tooltip": `triangle_rec(x, y, size, depth);`,
         "helpUrl": ""
     },
     {
@@ -93,15 +116,15 @@ Blockly.common.defineBlocksWithJsonArray([
         "args0": [
             { "type": "input_value", "name": "X" },
             { "type": "input_value", "name": "Y" },
-            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0},
+            { "type": "field_number", "name": "SIZE", "value": 400, "min": 0 },
             { "type": "field_number", "name": "DEPTH", "value": 4, "min": 0, "max": 10, "precision": 1 }
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
-        "tooltip": "Calls triangle_rec to start the Sierpinski recursion with given parameters.",
+        "colour": 345,
+        "tooltip": `triangle_rec(x, y, size, depth);`,
         "helpUrl": ""
-    } 
+    }
 ]);
 
 // ================================
@@ -113,18 +136,20 @@ Blockly.common.defineBlocksWithJsonArray([
  * @param {Blockly.Block} block 
  * @returns {string} 
  */
-javascript.javascriptGenerator.forBlock['draw_sierpinski_triangle'] = function (block) {
+javascript.javascriptGenerator.forBlock['all_in_sierpniski_triangle'] = function (block) {
     const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
     const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
     const size = block.getFieldValue('SIZE');
     const depth = block.getFieldValue('DEPTH');
 
     return `function triangle_rec(x, y, size, depth) {
+    // Base case: if recursion depth is 0, draw a single triangle
     if (depth === 0) {
       drawSingleTriangle(p, x, y, size);
       return;
     }
-  
+    
+    // Calculate geometry helper values
     const half = size / 2;
     const height = (Math.sqrt(3) / 2) * size;
     const halfHeight = height / 2;
@@ -201,10 +226,9 @@ javascript.javascriptGenerator.forBlock['call_triangle_rec_position'] = function
 javascript.javascriptGenerator.forBlock['call_triangle_rec'] = function (block) {
     const x = javascript.javascriptGenerator.valueToCode(block, 'X', javascript.Order.NONE) || '0';
     const y = javascript.javascriptGenerator.valueToCode(block, 'Y', javascript.Order.NONE) || '0';
-    const size = block.getFieldValue('SIZE');    
+    const size = block.getFieldValue('SIZE');
     const depth = block.getFieldValue('DEPTH');
 
     return `triangle_rec(${x}, ${y}, ${size}, ${depth});\n`;
 };
 
-  

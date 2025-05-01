@@ -1,3 +1,20 @@
+/**
+ * @fileoverview
+ * Defines the custom Blockly blocks and JavaScript code generators
+ * for drawing the Koch Snowflake fractal using p5.js.
+ * 
+ * This set of blocks supports three levels of abstraction for creating
+ * the Koch Snowflake:
+ * 
+ * - High-level block: `all_in_koch_snowflake` draws the full fractal using built-in logic.
+ * - Mid-level blocks: These blocks break the fractal generation into
+ *   conceptual steps without introducing programming constructs. Blocks such as
+ *   `generate_snowflake` and `add_fractal_edge` let users reason about geometric
+ *   construction and recursive depth without needing to define functions or manage flow.
+ * - Low-level blocks: These blocks expose programming fundamentals such as
+ *   defining functions, implementing recursion, and calling functions. 
+ */
+
 // ================================
 // Koch Snowflake blocks definition
 // ================================
@@ -105,7 +122,7 @@ drawSnowflakeEdges();`,
     "message0": "define empty edges array",
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": "let edges = [];",
     "helpUrl": ""
   },
@@ -118,7 +135,7 @@ drawSnowflakeEdges();`,
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `function generateSnowflake(x, y, length, depth) {\n}`,
     "helpUrl": ""
   },
@@ -131,7 +148,7 @@ drawSnowflakeEdges();`,
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `function generateKochEdge(a, b, depth) {\n}`,
     "helpUrl": ""
   },
@@ -144,7 +161,7 @@ drawSnowflakeEdges();`,
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `function drawSnowflakeEdges() {\n}`,
     "helpUrl": ""
   },
@@ -154,7 +171,7 @@ drawSnowflakeEdges();`,
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `const { a, b, c } = calculateEquilateralTriangle(p, x, y, length);`,
     "helpUrl": ""
   },
@@ -163,7 +180,7 @@ drawSnowflakeEdges();`,
     "message0": "if depth is 0 then push edge and return",
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `if (depth === 0) {
     edges.push({ a, b });
     return;
@@ -175,7 +192,7 @@ drawSnowflakeEdges();`,
     "message0": "calculate subdivision points p1, peak, p2 from a → b",
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `const { p1, peak, p2 } = getKochPoints(p, a, b);\n`,
     "helpUrl": ""
   },
@@ -199,7 +216,7 @@ drawSnowflakeEdges();`,
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `generateKochEdge(pointA, pointB, depth);\n`,
     "helpUrl": ""
   },
@@ -209,7 +226,7 @@ drawSnowflakeEdges();`,
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `for (let edge of edges) {
         p.line(edge.a.x, edge.a.y, edge.b.x, edge.b.y);
       }`,
@@ -226,7 +243,7 @@ drawSnowflakeEdges();`,
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 0,
+    "colour": 345,
     "tooltip": `generateSnowflake(x, y, length, depth);
 drawSnowflakeEdges();`,
     "helpUrl": ""
