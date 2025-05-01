@@ -117,6 +117,8 @@ export const toolbox = {
       "name": "Mandelbrot Set",
       "colour": "#90CAF9",
       "contents": [
+        { "kind": "block", "type": "all_in_mandelbrot_set" },
+        { "kind": "block", "type": "draw_mandelbrot_definition" },
         { "kind": "block", "type": "draw_mandelbrot" },
         { "kind": "block", "type": "setup_pixels" },
         { "kind": "block", "type": "define_mandelbrot_set" },
