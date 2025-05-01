@@ -22,7 +22,7 @@
 Blockly.common.defineBlocksWithJsonArray([
   {
     "type": "all_in_koch_snowflake",
-    "message0": "draw Koch snowflake at x: %1 y: %2 with length: %3 depth: %4",
+    "message0": "Create Koch snowflake at x: %1 y: %2 with length: %3 depth: %4",
     "args0": [
       { "type": "input_value", "name": "X" },
       { "type": "input_value", "name": "Y" },

@@ -17,7 +17,7 @@
 Blockly.common.defineBlocksWithJsonArray([
   {
     type: "all_in_tree_fractal",
-    message0: "Draw Tree Fractal with branch length: %1 depth: %2 branch split: %3 and rotation: %4",
+    message0: "Create Tree Fractal with branch length: %1 depth: %2 branch split: %3 and rotation: %4",
     args0: [
       { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
       { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },

@@ -68,6 +68,8 @@ export const toolbox = {
       "colour": "#A5D6A7",
       "contents": [
         { "kind": "block", "type": "all_in_sierpniski_triangle" },
+        { "kind": "block", "type": "triangle_rec_definition" },
+        { "kind": "block", "type": "triangle_rec" },
         { "kind": "block", "type": "define_triangle_rec_function" },
         { "kind": "block", "type": "sierpinski_recursion_base_case" },
         { "kind": "block", "type": "triangle_geometry_vars" },
@@ -104,6 +106,8 @@ export const toolbox = {
       "colour": "#A5D6A7",
       "contents": [
         { "kind": "block", "type": "all_in_cantor_set" },
+        { "kind": "block", "type": "draw_cantor_definition" },
+        { "kind": "block", "type": "draw_cantor" },
         { "kind": "block", "type": "define_draw_cantor_function" },
         { "kind": "block", "type": "cantor_recursion_base_case" },
         { "kind": "block", "type": "cantor_geometry_vars" },
