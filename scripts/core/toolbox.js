@@ -116,6 +116,23 @@ export const toolbox = {
         { "kind": "block", "type": "call_draw_cantor" },
       ]
     },
+    {
+      "kind": "category",
+      "name": "Sierpinski Carpet",
+      "colour": "#A5D6A7",
+      "contents": [
+        { "kind": "block", "type": "all_in_sierpniski_carpet" },
+        { "kind": "block", "type": "draw_carpet_definition" },
+        { "kind": "block", "type": "draw_carpet" },
+        { "kind": "block", "type": "define_draw_carpet" },
+        { "kind": "block", "type": "carpet_recursion_base_case" },
+        { "kind": "block", "type": "carpet_divide_square" },
+        { "kind": "block", "type": "carpet_grid_loop" },
+        { "kind": "block", "type": "carpet_skip_center_square" },
+        { "kind": "block", "type": "call_draw_carpet_recursive" },
+        { "kind": "block", "type": "call_draw_carpet" }
+      ]
+    },
     // ───────── Non-Recursive Fractals ─────────
     {
       "kind": "category",
