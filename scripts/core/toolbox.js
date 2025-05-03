@@ -153,7 +153,7 @@ export const toolbox = {
         { "kind": "block", "type": "dragon_turn_loop" },
         { "kind": "block", "type": "dragon_update_direction" },
         { "kind": "block", "type": "dragon_draw_segment" },
-    
+
       ]
     },
     {
@@ -161,7 +161,19 @@ export const toolbox = {
       "name": "Barnsley Fern",
       "colour": "#90CAF9",
       "contents": [
-        { "kind": "block", "type": "draw_barnsley_fern" }, 
+        { "kind": "block", "type": "all_in_barnsley_fern" },
+        { "kind": "block", "type": "barnsley_fern_definition" },
+        { "kind": "block", "type": "draw_barnsley_fern" },
+        { "kind": "block", "type": "define_barnsley_fern" },
+        { "kind": "block", "type": "barnsley_set_starting_point" },
+        { "kind": "block", "type": "barnsley_fern_iteration" },
+        { "kind": "block", "type": "barnsley_math_coordinates" },
+        { "kind": "block", "type": "barnsley_random_probability" },
+        { "kind": "block", "type": "barnsley_set_next_point" },
+        { "kind": "block", "type": "barnsley_drawing_rules" },
+        { "kind": "block", "type": "barnsley_move_point" },
+        { "kind": "block", "type": "call_barnsley_fern" }
+
       ]
     },
     // ───────── Logic & Math ─────────
