@@ -1,3 +1,20 @@
+/**
+ * Draws the Barnsley Fern fractal using an Iterated Function System (IFS).
+ *
+ * This function starts from an initial (x, y) position and applies a series of 
+ * randomly selected affine transformations to simulate the natural growth pattern 
+ * of a fern. Each iteration draws a single point on the canvas based on the 
+ * transformed coordinates. Over many iterations, a fern-like shape emerges.
+ *
+ * The four transformation rules (stem, leaflet, left leaflet, right leaflet) are
+ * chosen probabilistically to produce the self-similar fractal structure.
+ *
+ * @param {p5} p - The p5.js instance (used for canvas drawing functions).
+ * @param {number} startX - Initial x-coordinate in mathematical space.
+ * @param {number} startY - Initial y-coordinate in mathematical space.
+ * @param {number} iterations - Number of points to plot (more points = more detail).
+ */
+
 function barnsleyFern(p, startX, startY, iterations) {
     // Start at the initial point
     let x = startX;

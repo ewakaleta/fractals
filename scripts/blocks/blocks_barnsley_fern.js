@@ -194,7 +194,7 @@ Blockly.common.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 180,
+        "colour": 345,
         "tooltip": `barnsleyFern(startX, startY, depth)`,
         "helpUrl": ""
     },
