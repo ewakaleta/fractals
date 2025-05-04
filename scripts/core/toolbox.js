@@ -133,6 +133,21 @@ export const toolbox = {
         { "kind": "block", "type": "call_draw_carpet" }
       ]
     },
+    {
+      "kind": "category",
+      "name": "Levy C Curve",
+      "colour": "#A5D6A7",
+      "contents": [
+        { "kind": "block", "type": "all_in_levy_curve" },
+        { "kind": "block", "type": "draw_levy_curve_definition" },
+        { "kind": "block", "type": "draw_levy_curve" },
+        { "kind": "block", "type": "define_draw_levy_curve" },
+        { "kind": "block", "type": "levy_curve_recursion_base_case" },
+        { "kind": "block", "type": "levy_curve_midpoint" },
+        { "kind": "block", "type": "levy_curve_recursion_call" },
+        { "kind": "block", "type": "call_draw_levy_curve" }
+      ]
+    },
     // ───────── Non-Recursive Fractals ─────────
     {
       "kind": "category",
