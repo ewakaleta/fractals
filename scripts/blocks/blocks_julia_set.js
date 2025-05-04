@@ -160,7 +160,7 @@ p.pixels[pix + 3] = 255; // Full opacity`,
     },
     {
         "type": "call_draw_julia_set",
-        "message0": "Draw Julia Set at X: %1 Y: %2 with zoom: %3 and depth: %4 %5 Use color: %6 base hue: %7 hue range: %8",
+        "message0": "Call drawJuliaSet() at X: %1 Y: %2 with zoom: %3 and depth: %4 %5 Use color: %6 base hue: %7 hue range: %8",
         "args0": [
             { "type": "field_number", "name": "X", "value": 0 },
             { "type": "field_number", "name": "Y", "value": 0 },
