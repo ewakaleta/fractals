@@ -160,10 +160,10 @@ export const toolbox = {
         { "kind": "block", "type": "setup_pixels" },
         { "kind": "block", "type": "define_mandelbrot_set" },
         { "kind": "block", "type": "pixel_loop" },
-        { "kind": "block", "type": "pixel_to_complex" },
+        { "kind": "block", "type": "pixel_to_complex_mandelbrot" },
         { "kind": "block", "type": "mandelbrot_iteration_loop" },
         { "kind": "block", "type": "mandelbrot_determine_color" },
-        { "kind": "block", "type": "mandelbrot_update_pixels" },
+        { "kind": "block", "type": "update_pixels" },
         { "kind": "block", "type": "call_mandelbrot" },
       ]
     },
@@ -204,8 +204,25 @@ export const toolbox = {
         { "kind": "block", "type": "barnsley_set_next_point" },
         { "kind": "block", "type": "barnsley_drawing_rules" },
         { "kind": "block", "type": "barnsley_move_point" },
-        { "kind": "block", "type": "call_barnsley_fern" }
-
+        { "kind": "block", "type": "call_barnsley_fern" },
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Julia Set",
+      "colour": "#90CAF9",
+      "contents": [
+        { "kind": "block", "type": "all_in_julia_set" },
+        { "kind": "block", "type": "draw_julia_set_definition" },
+        { "kind": "block", "type": "draw_julia_set" },
+        { "kind": "block", "type": "setup_pixels" },
+        { "kind": "block", "type": "define_draw_julia_set" },
+        { "kind": "block", "type": "pixel_loop" },
+        { "kind": "block", "type": "pixel_to_complex_julia" },
+        { "kind": "block", "type": "julia_set_iteration_loop" },
+        { "kind": "block", "type": "julia_set_determine_color" },
+        { "kind": "block", "type": "update_pixels" },
+        { "kind": "block", "type": "call_draw_julia_set" },
       ]
     },
     // ───────── Logic & Math ─────────

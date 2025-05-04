@@ -35,13 +35,13 @@ Blockly.common.defineBlocksWithJsonArray([
   for (let x = 0; x < p.width; x++) {
     for (let y = 0; y < p.height; y++) {
       // Map pixel coordinates to a complex number
-      const { aStart, bStart } = pixelToComplexNum(x, y, zoom, offsetX, offsetY);
+      const { aStart, bStart } = pixelToComplexNumMandelbrot(x, y, zoom, offsetX, offsetY);
 
       // Run Mandelbrot iteration to determine escape time
       const iterations = mandelbrotIteration(aStart, bStart, depth);
 
       // Set pixel color based on iteration count and chosen coloring mode
-      determineColors(p, x, y, iterations, depth, useColor, baseHue, hueRange);
+      determineColorsMandelbrot(p, x, y, iterations, depth, useColor, baseHue, hueRange);
     }
   }
 
@@ -68,7 +68,6 @@ Blockly.common.defineBlocksWithJsonArray([
     "tooltip": `mandelbrotSet(offsetX, offsetY, zoom, depth, useColor, baseHue, hueRange)`,
     "helpUrl": ""
   },
-
   {
     "type": "setup_pixels",
     "message0": "setupPixels(p)",
@@ -113,8 +112,8 @@ Blockly.common.defineBlocksWithJsonArray([
     "helpUrl": ""
   },
   {
-    "type": "pixel_to_complex",
-    "message0": "convert a pixel to a complex number",
+    "type": "pixel_to_complex_mandelbrot",
+    "message0": "convert a pixel to a complex number for Mandelbrot",
     "args0": [],
     "previousStatement": null,
     "nextStatement": null,
@@ -187,7 +186,7 @@ p.pixels[pix + 3] = 255;        // Full opacity`,
     "helpUrl": ""
   },
   {
-    "type": "mandelbrot_update_pixels",
+    "type": "update_pixels",
     "message0": "update pixel buffer",
     "args0": [],
     "previousStatement": null,
@@ -249,16 +248,6 @@ javascript.javascriptGenerator.forBlock['all_in_mandelbrot_set'] = function (blo
  * @returns {string}
  */
 javascript.javascriptGenerator.forBlock['draw_mandelbrot_definition'] = function (block) {
-  const offsetX = block.getFieldValue('X');
-  const offsetY = block.getFieldValue('Y');
-  const zoom = block.getFieldValue('ZOOM');
-  const depth = block.getFieldValue('DEPTH');
-
-  const useColor = block.getFieldValue('USE_COLOR') === 'TRUE';
-  const baseHue = block.getFieldValue('BASE_HUE');
-  const hueRange = block.getFieldValue('HUE_RANGE');
-
-
   return `function mandelbrotSet(offsetX, offsetY, zoom, depth, useColor, baseHue, hueRange) {
   setupPixels(p); // Prepare the canvas to manipulate pixels directly
 
@@ -266,13 +255,13 @@ javascript.javascriptGenerator.forBlock['draw_mandelbrot_definition'] = function
   for (let x = 0; x < p.width; x++) {
     for (let y = 0; y < p.height; y++) {
       // Map pixel coordinates to a complex number
-      const { aStart, bStart } = pixelToComplexNum(x, y, zoom, offsetX, offsetY);
+      const { aStart, bStart } = pixelToComplexNumMandelbrot(x, y, zoom, offsetX, offsetY);
 
       // Run Mandelbrot iteration to determine escape time
       const iterations = mandelbrotIteration(aStart, bStart, depth);
 
       // Set pixel color based on iteration count and chosen coloring mode
-      determineColors(p, x, y, iterations, depth, useColor, baseHue, hueRange);
+      determineColorsMandelbrot(p, x, y, iterations, depth, useColor, baseHue, hueRange);
     }
   }
 
@@ -426,7 +415,7 @@ p.pixels[pix + 3] = 255;        // Full opacity
  * @param {Blockly.Block} block
  * @returns {string} JavaScript code
  */
-javascript.javascriptGenerator.forBlock['mandelbrot_update_pixels'] = function (block) {
+javascript.javascriptGenerator.forBlock['update_pixels'] = function (block) {
   return `p.updatePixels();\n`;
 };
 

@@ -16,7 +16,7 @@ function setupPixels(p) {
  * @param {number} offsetY - vertical offset
  * @returns {{aStart: number, bStart: number}} - real and imaginary parts of the complex number
  */
-function pixelToComplexNum(x, y, zoom, offsetX, offsetY) {
+function pixelToComplexNumMandelbrot(x, y, zoom, offsetX, offsetY) {
   const aStart = x / zoom + offsetX;
   const bStart = y / zoom + offsetY;
   return { aStart, bStart };
@@ -63,7 +63,7 @@ function mandelbrotIteration(aStart, bStart, maxIterations) {
  * @param {number} baseHue - base hue (0-255)
  * @param {number} hueRange - hue variation range (0-255)
  */
-function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange) {
+function determineColorsMandelbrot(p, x, y, n, maxIterations, useColor, baseHue, hueRange) {
   let color
 
   if (useColor) {
@@ -92,9 +92,6 @@ function determineColors(p, x, y, n, maxIterations, useColor, baseHue, hueRange)
  * iterations each point takes to escape the Mandelbrot set and colors it
  * accordingly using either HSB color or grayscale.
  *
- * This function directly manipulates the canvas pixel array for performance,
- * and must be called between `p.loadPixels()` and `p.updatePixels()`.
- *
  * @param {number} offsetX - Horizontal offset of the complex plane
  * @param {number} offsetY - Vertical offset of the complex plane
  * @param {number} zoom - Zoom level to scale the visible portion of the fractal
@@ -109,9 +106,9 @@ function mandelbrotSet(p, offsetX, offsetY, zoom, depth, useColor, baseHue, hueR
   // Loop through every pixel on the canvas
   for (let x = 0; x < p.width; x++) {
     for (let y = 0; y < p.height; y++) {
-      const { aStart, bStart } = pixelToComplexNum(x, y, zoom, offsetX, offsetY);
+      const { aStart, bStart } = pixelToComplexNumMandelbrot(x, y, zoom, offsetX, offsetY);
       const iterations = mandelbrotIteration(aStart, bStart, depth);
-      determineColors(p, x, y, iterations, depth, useColor, baseHue, hueRange);
+      determineColorsMandelbrot(p, x, y, iterations, depth, useColor, baseHue, hueRange);
     }
   }
 
