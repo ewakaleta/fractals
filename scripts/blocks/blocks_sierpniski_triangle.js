@@ -213,7 +213,7 @@ javascript.javascriptGenerator.forBlock['triangle_rec'] = function (block) {
  */
 javascript.javascriptGenerator.forBlock['define_triangle_rec_function'] = function (block) {
     const statements = javascript.javascriptGenerator.statementToCode(block, 'DO');
-    return `function triangle_rec(x, y, size, depth) {\n${statements}};\n`;
+    return `function triangle_rec(x, y, size, depth) {\n${statements}};\n\n`;
 };
 
 /**
@@ -224,7 +224,7 @@ javascript.javascriptGenerator.forBlock['sierpinski_recursion_base_case'] = func
     return `if (depth === 0) {
     drawSingleTriangle(p, x, y, size);
     return;
-  }\n`;
+  }\n\n`;
 };
 
 /**
@@ -234,7 +234,7 @@ javascript.javascriptGenerator.forBlock['sierpinski_recursion_base_case'] = func
 javascript.javascriptGenerator.forBlock['triangle_geometry_vars'] = function () {
     return `const half = size / 2;
 const height = (Math.sqrt(3) / 2) * size;
-const halfHeight = height / 2;\n`;
+const halfHeight = height / 2;\n\n`;
 };
 
 /**

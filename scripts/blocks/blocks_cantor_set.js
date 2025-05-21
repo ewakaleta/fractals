@@ -224,7 +224,7 @@ javascript.javascriptGenerator.forBlock['define_draw_cantor_function'] = functio
  * @returns {string}
  */
 javascript.javascriptGenerator.forBlock['cantor_recursion_base_case'] = function () {
-    return `if (depth === 0) return;\n`;
+    return `if (depth === 0) return;\n\n`;
 };
 
 /**
@@ -233,7 +233,7 @@ javascript.javascriptGenerator.forBlock['cantor_recursion_base_case'] = function
 * @returns {string}
 */
 javascript.javascriptGenerator.forBlock['cantor_draw_line'] = function () {
-    return `p.line(x, y, x + len, y);\n`;
+    return `p.line(x, y, x + len, y);\n\n`;
 };
 
 /**
@@ -243,7 +243,7 @@ javascript.javascriptGenerator.forBlock['cantor_draw_line'] = function () {
  */
 javascript.javascriptGenerator.forBlock['cantor_geometry_vars'] = function () {
     return `const ySpacing = 20;
-  const newLen = len / 3;\n`;
+const newLen = len / 3;\n\n`;
 };
 
 /**

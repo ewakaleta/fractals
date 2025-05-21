@@ -371,7 +371,7 @@ javascript.javascriptGenerator.forBlock['dragon_update_direction'] = function ()
  *
  * @returns {string} 
  */
-javascript.javascriptGenerator.forBlock['dragon_draw_segment'] = function () {
+javascript.javascriptGenerator.forBlock['dragon_draw_segment'] = function (block) {
     const length = block.getFieldValue('LENGTH');
     return `const x2 = p.cos(dir) * ${length};
 const y2 = p.sin(dir) * ${length};

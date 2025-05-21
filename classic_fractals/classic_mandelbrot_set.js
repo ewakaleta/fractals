@@ -20,7 +20,6 @@ function setup() {
 function draw() {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      // Convert pixel to complex number c = a + bi
       const aStart = x / zoom + offsetX;
       const bStart = y / zoom + offsetY;
 
@@ -40,7 +39,6 @@ function draw() {
         n++;
       }
 
-      // Determine color based on iterations
       let color;
       if (useColor) {
         colorMode(HSB, 255);
@@ -55,7 +53,6 @@ function draw() {
         color = color(bright);
       }
 
-      // Write to pixel buffer
       const pix = (x + y * width) * 4;
       pixels[pix + 0] = red(col);
       pixels[pix + 1] = green(col);

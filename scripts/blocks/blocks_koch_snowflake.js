@@ -400,7 +400,7 @@ javascript.javascriptGenerator.forBlock['define_draw_snowflake_edges'] = functio
  * @returns {string} 
  */
 javascript.javascriptGenerator.forBlock['calculate_equilateral_triangle'] = function () {
-  return `const { a, b, c } = calculateEquilateralTriangle(p, x, y, length);\n`;
+  return `const { a, b, c } = calculateEquilateralTriangle(p, x, y, length);\n\n`;
 };
 
 /**
@@ -413,7 +413,7 @@ javascript.javascriptGenerator.forBlock['koch_recursion_base_case'] = function (
   return `if (depth === 0) {
     edges.push({ a, b });
     return;
-  }\n`;
+  }\n\n`;
 };
 
 /**
@@ -423,7 +423,7 @@ javascript.javascriptGenerator.forBlock['koch_recursion_base_case'] = function (
  * @returns {string} 
  */
 javascript.javascriptGenerator.forBlock['koch_calculate_subdivision_points'] = function () {
-  return `const { p1, peak, p2 } = getKochPoints(p, a, b);\n`;
+  return `const { p1, peak, p2 } = getKochPoints(p, a, b);\n\n`;
 };
 
 /**

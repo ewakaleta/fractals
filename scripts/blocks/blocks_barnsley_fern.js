@@ -5,7 +5,7 @@
 Blockly.common.defineBlocksWithJsonArray([
     {
         "type": "all_in_barnsley_fern",
-        "message0": "Create Barnslet Fern starting at X: %1 and Y: %2 with depth: %3",
+        "message0": "Create Barnsley Fern starting at X: %1 and Y: %2 with depth: %3",
         "args0": [
             { "type": "field_number", "name": "START_X", "value": 0 },
             { "type": "field_number", "name": "START_Y", "value": 0 },

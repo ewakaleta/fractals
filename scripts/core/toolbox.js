@@ -44,7 +44,7 @@ export const toolbox = {
     // ───────── Recursive Fractals ─────────
     {
       "kind": "category",
-      "name": "Tree Fractal",
+      "name": "Fractal Canopy",
       "colour": "#A5D6A7",
       "contents": [
         { "kind": "block", "type": "all_in_tree_fractal" },

@@ -259,7 +259,7 @@ javascript.javascriptGenerator.forBlock['levy_curve_recursion_base_case'] = func
 javascript.javascriptGenerator.forBlock['levy_curve_midpoint'] = function () {
     return `// Compute midpoint rotated 45 degrees\n` +
         `const midX = (x1 + x2) / 2 + (y2 - y1) / 2;\n` +
-        `const midY = (y1 + y2) / 2 - (x2 - x1) / 2;\n`;
+        `const midY = (y1 + y2) / 2 - (x2 - x1) / 2;\n\n`;
 };
 
 /**

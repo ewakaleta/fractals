@@ -338,7 +338,7 @@ ${innerCode}
  * @param {Blockly.Block} block
  * @returns {string} JavaScript code
  */
-javascript.javascriptGenerator.forBlock['pixel_to_complex'] = function (block) {
+javascript.javascriptGenerator.forBlock['pixel_to_complex_mandelbrot'] = function (block) {
   return `const aStart = x / zoom + offsetX;\nconst bStart = y / zoom + offsetY;\n\n`;
 };
 

@@ -239,7 +239,7 @@ javascript.javascriptGenerator.forBlock['draw_julia_set_definition'] = function 
     }
 
     p.updatePixels();
-}`;
+}\n`;
 };
 
 /**
@@ -262,7 +262,7 @@ javascript.javascriptGenerator.forBlock['draw_julia_set'] = function (block) {
     const hueRange = block.getFieldValue('HUE_RANGE');
 
 
-    return `drawJuliaSet(${offsetX}, ${offsetY}, ${zoom}, ${depth}, ${useColor}, ${baseHue}, ${hueRange})`;
+    return `drawJuliaSet(${offsetX}, ${offsetY}, ${zoom}, ${depth}, ${useColor}, ${baseHue}, ${hueRange})\n`;
 };
 
 /**

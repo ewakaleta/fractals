@@ -17,7 +17,7 @@
 Blockly.common.defineBlocksWithJsonArray([
   {
     type: "all_in_tree_fractal",
-    message0: "Create Tree Fractal with branch length: %1 depth: %2 branch split: %3 and rotation: %4",
+    message0: "Create a Fractal Canopy with branch length: %1 depth: %2 branch split: %3 and rotation: %4",
     args0: [
       { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
       { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },
@@ -34,7 +34,7 @@ drawBranch(p, height, currentDepth, maxDepth, split, rotation) // Start drawing 
   },
   {
     "type": "draw_branch",
-    "message0": "Describe how to draw the Tree Fractal",
+    "message0": "Describe how to draw the Fractal Canopy",
     "previousStatement": null,
     "nextStatement": null,
     "colour": 180,
@@ -79,7 +79,7 @@ drawBranch(p, height, currentDepth, maxDepth, split, rotation) // Start drawing 
   },
   {
     type: "draw_tree_fractal",
-    message0: "Draw Tree Fractal with length: %1 depth: %2 branch split: %3 and rotation: %4",
+    message0: "Draw a Fractal Canopy with length: %1 depth: %2 branch split: %3 and rotation: %4",
     args0: [
       { type: "field_number", name: "LENGTH", value: 200, min: 0, max: 500 },
       { type: "field_number", name: "MAXDEPTH", value: 8, min: 0, max: 16, precision: 1 },
@@ -276,25 +276,13 @@ javascript.javascriptGenerator.forBlock['define_draw_branch'] = function (block)
 };
 
 /**
- *Generates JavaScript for defining the drawBranch() function.
- *
- * @param {Blockly.Block} block 
- * @returns {string}
- */
-
- javascript.javascriptGenerator.forBlock['draw_tree_fractal'] = function (block) {
-  const statements = javascript.javascriptGenerator.statementToCode(block, 'DO');
-  return `function drawBranch(height, depth, maxDepth, split, rotation) {\n${statements}}\n\n`;
-};
-
-/**
 * Generates JavaScript for the base case logic for the Tree Fractal recursion.
 * If depth reaches maxDepth return.
 *
 * @returns {string} 
 */
 javascript.javascriptGenerator.forBlock['tree_recursion_base_case'] = function () {
-  return `if (depth >= maxDepth) return\n`;
+  return `if (depth >= maxDepth) return\n\n`;
 };
 
 /**
@@ -303,7 +291,7 @@ javascript.javascriptGenerator.forBlock['tree_recursion_base_case'] = function (
 * @returns {string} 
 */
 javascript.javascriptGenerator.forBlock['draw_current_branch'] = function () {
-  return `p.line(0, 0, 0, -length);\np.translate(0, -length);\n`;
+  return `p.line(0, 0, 0, -length);\np.translate(0, -length);\n\n`;
 };
 
 /**
@@ -313,7 +301,7 @@ javascript.javascriptGenerator.forBlock['draw_current_branch'] = function () {
 */
 javascript.javascriptGenerator.forBlock['determine_angle'] = function () {
   return `let angleStep = split > 1 ? rotation / (split - 1) : 0;
-let startAngle = -rotation / 2\n`;
+let startAngle = -rotation / 2\n\n`;
 };
 
 /**
